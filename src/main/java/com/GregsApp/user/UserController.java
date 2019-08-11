@@ -17,16 +17,10 @@ public class UserController {
         this.userService = userService;
         this.userRepository = userRepository;
     }
-    @RequestMapping("/test")
-    @ResponseBody
-    public String test(){
-        return "test";
-    }
-
     @GetMapping("/add")
     public String addForm(Model model){
         model.addAttribute("user", new User());
-        return "userAddForm";
+        return "userAddThym";
     }
 
     @PostMapping("/save")
@@ -35,5 +29,25 @@ public class UserController {
         userService.createUser(user);
         return "Job done - Used added to DataBase(DB)";
     }
+    @GetMapping("/list")
+    public String getListOfUsers(Model model){
+        model.addAttribute("listOfUsers", userService.getList());
+        return "userAddThym";
+    }
+
+
+
+//    @GetMapping("/updateForm")
+//    public String updateForm(@ModelAttribute User user) {
+//        userService.getUserById(user.getId());
+//        return "userUpdateThym";
+//    }
+//
+//    @PutMapping("/update")
+//    @ResponseBody
+//    public String updateUser(@ModelAttribute User user){
+//            userService.updateUser(user.getId());
+//            return "Job done, User with ID: " + user.getId() + " updated";
+//        }
 
 }

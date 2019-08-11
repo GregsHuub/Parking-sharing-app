@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf test</title>
+</head>
+<body>
+<h1>thymeleaf test</h1>
+<table>
+    <tbody>
+    <th:block th:each="user : ${listOfUsers}">
+        <tr>
+            <td th:text="${user.firstName}">First name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.contactNumber}">Numer</td>
+            <td th:text="${user.email}">email</td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.createdOn}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+</body>
+</html>

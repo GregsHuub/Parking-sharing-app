@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf test</title>
+</head>
+<body>
+<h1>thymeleaf test</h1>
+
+            <form action ="#" th:action="@{/save}" th:object="user" method="post">
+            <p> Last name<input type="text" th:field="*{user.lastName}"/></p>
+           <p> Email<input type="text" th:field="*{user.email}"/> </p>
+<!--            <input type="text" th:field="*{user.password}"/>-->
+            <p>Number<input type="text" th:field="*{user.contactNumber}"/></p>
+                <button type="submit">Wyslij</button>
+            </form>
+
+
+</body>
+</html>
