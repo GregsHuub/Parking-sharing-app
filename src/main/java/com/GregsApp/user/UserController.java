@@ -34,20 +34,8 @@ public class UserController {
         model.addAttribute("listOfUsers", userService.getList());
         return "userAddThym";
     }
-
-
-
-//    @GetMapping("/updateForm")
-//    public String updateForm(@ModelAttribute User user) {
-//        userService.getUserById(user.getId());
-//        return "userUpdateThym";
-//    }
-//
-//    @PutMapping("/update")
-//    @ResponseBody
-//    public String updateUser(@ModelAttribute User user){
-//            userService.updateUser(user.getId());
-//            return "Job done, User with ID: " + user.getId() + " updated";
-//        }
-
+    @GetMapping("/fb")
+    public String fbtest(){
+        return "test";
+    }
 }

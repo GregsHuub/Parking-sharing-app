@@ -17,7 +17,6 @@ public class User extends BaseEntity {
     private String firstName;
     @NotNull
     private String lastName;
-    @NotNull
     private String contactNumber;
     @Email
     @Column(unique = true)

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>thymeleaf test</title>
@@ -9,11 +8,12 @@
 <body>
 <h1>thymeleaf test</h1>
 
-            <form action ="#" th:action="@{/save}" th:object="user" method="post">
-            <p> Last name<input type="text" th:field="*{user.lastName}"/></p>
-           <p> Email<input type="text" th:field="*{user.email}"/> </p>
-<!--            <input type="text" th:field="*{user.password}"/>-->
-            <p>Number<input type="text" th:field="*{user.contactNumber}"/></p>
+            <form action ="#" th:action="@{/api/user/save}" th:object="${user}" method="post">
+            <p> Last name<input type="text" th:field="*{firstName}"/></p>
+            <p> Last name<input type="text" th:field="*{lastName}"/></p>
+           <p> Email<input type="text" th:field="*{email}"/> </p>
+            <input type="text" th:field="*{password}"/>
+            <p>Number<input type="text" th:field="*{contactNumber}"/></p>
                 <button type="submit">Wyslij</button>
             </form>
 

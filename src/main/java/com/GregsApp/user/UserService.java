@@ -24,13 +24,15 @@ public class UserService {
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-    public void updateUser(Long id){
-        User userById = getUserById(id);
-        userRepository.saveAndFlush(userById);
-
+    public void updateUser(User user){
+        User userById = getUserById(user.getId());
+        userRepository.save(userById);
     }
     public User getUserById(Long id){
         return userRepository.findOneById(id);
+    }
+    public void deleteUserById(User user){
+        userRepository.delete(user);
     }
 
     public List<User> getList(){
