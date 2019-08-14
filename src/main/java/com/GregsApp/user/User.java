@@ -1,11 +1,13 @@
 package com.GregsApp.user;
 
 import com.GregsApp.address.HomeAddress;
+import com.GregsApp.users_parking_addresses.ParkingAddress;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -39,6 +41,8 @@ public class User extends BaseEntity {
 
     @OneToOne
     private HomeAddress homeAddress;
+    @OneToMany(mappedBy = "user")
+    Set<ParkingAddress> parkingAddress;
 
 
     public Long getId() {

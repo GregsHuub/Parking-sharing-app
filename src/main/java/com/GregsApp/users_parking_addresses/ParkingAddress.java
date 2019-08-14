@@ -1,5 +1,7 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.user.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -26,6 +28,9 @@ public class ParkingAddress {
     private LocalDateTime createdOn;
     private boolean reserved; // default false;
     private String accessInformation;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
 
 
     // information about how to get there, where to buy a ticket, speak with reception etc.
