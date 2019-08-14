@@ -1,1 +1,0 @@
-podwójne potwierdzenie do Emaila i hasla przy rejestracji

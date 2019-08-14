@@ -1,6 +1,6 @@
 package com.GregsApp.user;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
+import com.GregsApp.address.HomeAddress;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -28,16 +28,17 @@ public class User extends BaseEntity {
     private LocalDateTime updatedOn;
 
     @PrePersist
-    public void prePersist(){
-        createdOn = LocalDateTime.now();
+    public void prePersist() {
+        createdOn = LocalDateTime.now().withNano(0);
     }
+
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         updatedOn = LocalDateTime.now();
     }
+
     @OneToOne
-    private Address address;
-//    private Set<Role> roles;
+    private HomeAddress homeAddress;
 
 
     public Long getId() {
@@ -104,4 +105,11 @@ public class User extends BaseEntity {
         this.updatedOn = updatedOn;
     }
 
+    public HomeAddress getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(HomeAddress homeAddress) {
+        this.homeAddress = homeAddress;
+    }
 }

@@ -47,7 +47,6 @@ public class ShareApplication {
         return new ApiInfoBuilder()
                 .title("Parking-Sharing")
                 .description("Share your parking place")
-                .contact(String.valueOf(contact))
                 .build();
     }
 

@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/user")
+@RequestMapping("/api/user/")
 public class UserController {
 
     private UserService userService;
@@ -17,25 +17,24 @@ public class UserController {
         this.userService = userService;
         this.userRepository = userRepository;
     }
-    @GetMapping("/add")
-    public String addForm(Model model){
+    //-----------------------    LOGIN FORM -------------------------
+    @GetMapping("/login")
+    public String createUserForm(Model model){
         model.addAttribute("user", new User());
-        return "userAddThym";
+        return "index";
     }
 
     @PostMapping("/save")
     @ResponseBody
-    public String saveForm(@ModelAttribute User user){
+    public String save(@ModelAttribute User user){
         userService.createUser(user);
         return "Job done - Used added to DataBase(DB)";
     }
+//-----------------------    LOGIN FORM -------------------------
     @GetMapping("/list")
     public String getListOfUsers(Model model){
         model.addAttribute("listOfUsers", userService.getList());
         return "userAddThym";
     }
-    @GetMapping("/fb")
-    public String fbtest(){
-        return "test";
-    }
+
 }
