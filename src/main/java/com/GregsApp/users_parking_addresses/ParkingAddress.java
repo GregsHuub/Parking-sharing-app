@@ -17,7 +17,7 @@ public class ParkingAddress {
     @NotNull
     private String street;
     @NotNull
-    private String streetNumber;
+    private Integer streetNumber;
     private Double maxWidth;
     private Double maxHeight;
     private String feature_access_time; // for example 24/7 access
@@ -77,11 +77,11 @@ public class ParkingAddress {
         this.street = street;
     }
 
-    public String getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(String streetNumber) {
+    public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
 
