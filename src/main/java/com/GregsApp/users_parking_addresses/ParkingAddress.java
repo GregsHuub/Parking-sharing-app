@@ -3,6 +3,7 @@ package com.GregsApp.users_parking_addresses;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "users_parking_addresses")
@@ -42,7 +43,9 @@ public class ParkingAddress {
 
     @PrePersist
     public void prePersist(){
-        createdOn = LocalDateTime.now().withNano(0);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        // to zastosowac potem
+        createdOn = LocalDateTime.now().withNano(0).withSecond(0);
     }
 
     public Long getId() {
@@ -139,5 +142,23 @@ public class ParkingAddress {
 
     public void setReserved(boolean reserved) {
         this.reserved = reserved;
+    }
+
+    @Override
+    public String toString() {
+        return "ParkingAddress{" +
+                "id=" + id +
+                ", parkingName='" + parkingName + '\'' +
+                ", parkingDescription='" + parkingDescription + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", maxWidth=" + maxWidth +
+                ", maxHeight=" + maxHeight +
+                ", feature_access_time='" + feature_access_time + '\'' +
+                ", feature_custom='" + feature_custom + '\'' +
+                ", createdOn=" + createdOn +
+                ", reserved=" + reserved +
+                ", accessInformation='" + accessInformation + '\'' +
+                '}';
     }
 }

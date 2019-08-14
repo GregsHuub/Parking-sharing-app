@@ -112,4 +112,19 @@ public class User extends BaseEntity {
     public void setHomeAddress(HomeAddress homeAddress) {
         this.homeAddress = homeAddress;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", homeAddress=" + homeAddress +
+                '}';
+    }
 }

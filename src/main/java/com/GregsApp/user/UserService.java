@@ -25,14 +25,14 @@ public class UserService {
         userRepository.save(user);
     }
     public void updateUser(User user){
-        User userById = getUserById(user.getId());
+        User userById = userRepository.findOneById(user.getId());
         userRepository.save(userById);
     }
     public User getUserById(Long id){
         return userRepository.findOneById(id);
     }
-    public void deleteUserById(User user){
-        userRepository.delete(user);
+    public void deleteUserById(User userById){
+        userRepository.delete(userById);
     }
 
     public List<User> getList(){

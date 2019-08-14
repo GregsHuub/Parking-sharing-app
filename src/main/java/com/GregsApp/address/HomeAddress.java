@@ -75,4 +75,17 @@ public class HomeAddress {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "HomeAddress{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", houseNumber=" + houseNumber +
+                ", user=" + user +
+                '}';
+    }
 }

@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping("/list")
     public String getListOfUsers(Model model){
         model.addAttribute("listOfUsers", userService.getList());
-        return "userAddThym";
+        return "userList";
     }
 
 }

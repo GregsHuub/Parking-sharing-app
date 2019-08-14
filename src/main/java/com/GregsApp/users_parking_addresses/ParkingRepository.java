@@ -8,10 +8,10 @@ import java.util.List;
 public interface ParkingRepository extends JpaRepository<ParkingAddress, Long> {
 
     ParkingAddress findOneById(Long parkingId);
-    List<ParkingRepository> findAllByStreet(String streetName);
-    List<ParkingRepository> findAllByParkingName(String parkingName);
-    List<ParkingRepository> findAllByStreetNumber(Integer streetNumber);
-    List<ParkingRepository> findAllByReserved(boolean trueOrFalse);
+    List<ParkingAddress> findAllByStreet(String streetName);
+    List<ParkingAddress> findAllByParkingName(String parkingName);
+    List<ParkingAddress> findAllByStreetNumber(Integer streetNumber);
+    List<ParkingAddress> findAllByReserved(boolean trueOrFalse);
 
 
 }
