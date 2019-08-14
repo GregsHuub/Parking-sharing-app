@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<!--przez to thymeleaf.org moze nie dzialac strona-->
+<head>
+    <meta charset="UTF-8">
+    <title>parking list</title>
+</head>
+<body>
+<h1>parking list check</h1>
+<table>
+    <tbody>
+    <th:block th:each="parking : ${parkingAddresses}">
+        <tr>
+            <label>Parking name</label><td th:text="${parking.parkingName}"></td>
+            <label>street</label><td th:text="${parking.street}"></td>
+            <label>street Number</label><td th:text="${parking.streetNumber}"></td>
+            <label>Parking is reserved:</label>  <td th:text="${parking.reserved}"></td>
+            <label>Description:</label><td th:text="${parking.parkingDescription}"></td>
+            <label>Access time</label> <td th:text="${parking.feature_access_time}"></td>
+            <label>Access Information</label> <td th:text="${parking.accessInformation}"></td>
+            <label>Feature</label> <td th:text="${parking.feature_custom}"></td>
+            <label>Max height</label> <td th:text="${parking.maxHeight}"></td>
+            <label>Max width</label> <td th:text="${parking.maxWidth}"></td>
+            <label>Create time</label> <td th:text="${parking.createdOn}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+</body>
+</html>

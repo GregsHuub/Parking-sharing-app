@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking add Form</title>
+</head>
+<body>
+<form action="#" th:action="@{/parking/save}" th:object="${parkingAddress}" method="post">
+    <div>
+        <input type="text" th:field="*{parkingName}" placeholder="Parking name">
+    </div>
+    <div>
+    <input type="text" th:field="*{parkingDescription}" placeholder="parkingDescription">
+    </div>
+    <div>
+        <input type="text" th:field="*{street}" placeholder="street">
+    </div>
+    <div>
+        <input type="number" th:field="*{streetNumber}" placeholder="streetNumber">
+    </div>
+    <div>
+        <input type="text" th:field="*{feature_access_time}" placeholder="Access time 24/7?">
+    </div>
+    <div>
+        <input type="text" th:field="*{feature_custom}" placeholder="feature_custom">
+    </div>
+    <div>
+        <label>Parking is avaible?</label><select th:field="*{reserved}">
+            <option th:value="true">Yes</option>
+            <option th:value="false">No</option>
+        </select>
+    </div>
+    <div>
+        <input type="text" th:field="*{accessInformation}" placeholder="How to get there">
+    </div>
+    <div>
+        <input type="number" step="0.1" min="0.5" th:field="*{maxWidth}" placeholder="Max width">
+    </div>
+    <div>
+        <input type="number" step="0.1" min="0.5" th:field="*{maxHeight}" placeholder="Max height">
+    </div>
+    <button type="submit">Wyslij</button>
+</form>
+
+</body>
+</html>
