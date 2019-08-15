@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin users list</title>
+</head>
+<body>
+    <h1>ADMIN</h1>
+<h3>USERS LIST</h3>
+    <th:block th:each="user : ${users}">
+    <ul>
+
+        <li th:text="${user.id}"></li>
+        <li th:text="${user.firstName}"></li>
+        <li th:text="${user.lastName}"></li>
+        <li th:text="${user.email}"></li>
+        <li th:text="${user.createdOn}"></li>
+        <li th:text="${user.uuid}"></li>
+        <li th:text="${user.homeAddress}"></li>
+        <li></li>
+        <li></li>
+    </ul>
+    </th:block>
+
+</body>
+</html>

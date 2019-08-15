@@ -1,32 +1,51 @@
-package com.GregsApp.order;
+package com.GregsApp.reservation;
 
-import javax.persistence.*;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "reservations")
-public class Reservation {
+public class ReservationCreateDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private LocalDateTime timeFrom;
     private LocalDateTime timeTo;
     private BigDecimal price;
     private BigDecimal serviceFee;
     private BigDecimal totalPrice;
     private Integer howManyTimesPlaceWasBooked; // couldnt find better name
-    private Integer minDurationTime; // minimum time to reserve
+    private Integer minDurationTime;
     private UUID reservationHashId;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
+    private Long userId;
 
-    public Long getId() {
-        return id;
+
+    public ReservationCreateDto(){
+
+    }
+    public ReservationCreateDto(Reservation reservation){
+        this.timeFrom = reservation.getTimeFrom();
+        this.timeTo = reservation.getTimeTo();
+        this.price = reservation.getPrice();
+        this.serviceFee = reservation.getServiceFee();
+        this.totalPrice = reservation.getTotalPrice();
+        this.howManyTimesPlaceWasBooked = reservation.getHowManyTimesPlaceWasBooked();
+        this.minDurationTime = reservation.getMinDurationTime();
+        this.reservationHashId = reservation.getReservationHashId();
+        this.createdOn = reservation.getCreatedOn();
+        this.updatedOn = reservation.getUpdatedOn();
+        this.userId = reservation.getUser().getId();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @PrePersist
+    public void prePersist() {
+        createdOn = LocalDateTime.now().withSecond(0).withNano(0);
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedOn = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
     public LocalDateTime getTimeFrom() {
@@ -91,5 +110,29 @@ public class Reservation {
 
     public void setReservationHashId(UUID reservationHashId) {
         this.reservationHashId = reservationHashId;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

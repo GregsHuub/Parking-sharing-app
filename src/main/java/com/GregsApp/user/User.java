@@ -1,6 +1,7 @@
 package com.GregsApp.user;
 
 import com.GregsApp.address.HomeAddress;
+import com.GregsApp.reservation.Reservation;
 import com.GregsApp.users_parking_addresses.ParkingAddress;
 
 import javax.persistence.*;
@@ -44,6 +45,8 @@ public class User extends BaseEntity {
     private HomeAddress homeAddress;
     @OneToMany(mappedBy = "user")
     Set<ParkingAddress> parkingAddress;
+    @OneToMany(mappedBy = "user")
+    private Reservation reservation;
 
 
     public Long getId() {
@@ -139,5 +142,13 @@ public class User extends BaseEntity {
                 ", updatedOn=" + updatedOn +
                 ", homeAddress=" + homeAddress +
                 '}';
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }
