@@ -5,7 +5,7 @@ import com.GregsApp.users_parking_addresses.ParkingAddress;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -15,12 +15,13 @@ public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank(message = "You have to provide your name")
     private String firstName;
-    @NotNull
+    @NotBlank(message = "You have to privide your lastname")
     private String lastName;
     private String contactNumber;
     @Email
+    @NotBlank(message = "You have to provide your email")
     @Column(unique = true)
     private String email;
     private String password;
@@ -115,6 +116,14 @@ public class User extends BaseEntity {
 
     public void setHomeAddress(HomeAddress homeAddress) {
         this.homeAddress = homeAddress;
+    }
+
+    public Set<ParkingAddress> getParkingAddress() {
+        return parkingAddress;
+    }
+
+    public void setParkingAddress(Set<ParkingAddress> parkingAddress) {
+        this.parkingAddress = parkingAddress;
     }
 
     @Override
