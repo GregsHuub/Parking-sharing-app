@@ -43,12 +43,14 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logut")
                 .permitAll()
                 .logoutSuccessUrl("/");
+    }
 
         @Bean
         @Override
-        protected UserDetailsService userDetailsService(){
+        protected UserDetailsService userDetailsService() {
             return new UserDetailsServiceImpl(userRepository);
         }
+
         @Bean
         public PasswordEncoder passwordEncoder(){
             return new BCryptPasswordEncoder(10);
@@ -60,5 +62,3 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("ADMIN").password("password").roles("ADMIN");
 //    }
     }
-
-}
