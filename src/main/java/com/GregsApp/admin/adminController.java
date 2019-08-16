@@ -28,8 +28,12 @@ public class adminController {
     @GetMapping("/usersList")
     public String usersList(Model model){
         model.addAttribute("users", userService.getList());
-
         return "admin/admin_users_list";
+    }
+    @GetMapping("/parkingList")
+    public String parkingList(Model model){
+        model.addAttribute("parking", parkingService.allParkingPlaces());
+        return "admin/admin_parkings_list";
     }
 
 

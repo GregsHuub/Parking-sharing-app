@@ -26,6 +26,12 @@ public class HomeAddressService {
 //        userById.setHomeAddress(homeAddress);
         homeAddress.setUser(userById);
         homeAddressRepository.save(homeAddress);
-
+    }
+    public void getHomeAddresses(){
+        homeAddressRepository.findAll();
+    }
+    public HomeAddress getUserHomeAddress(Long userId){
+        HomeAddress addresById = homeAddressRepository.findOneById(userId);
+        return homeAddressRepository.findOneByUserId(addresById.getId());
     }
 }
