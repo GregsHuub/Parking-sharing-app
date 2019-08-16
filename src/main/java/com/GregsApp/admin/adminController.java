@@ -25,11 +25,17 @@ public class adminController {
         this.parkingService = parkingService;
     }
 
+    @ModelAttribute
+    public void addresList(Model model){
+        model.addAttribute("address", homeAddressService.getHomeAddresses());
+    }
+    
     @GetMapping("/usersList")
     public String usersList(Model model){
         model.addAttribute("users", userService.getList());
         return "admin/admin_users_list";
     }
+    
     @GetMapping("/parkingList")
     public String parkingList(Model model){
         model.addAttribute("parking", parkingService.allParkingPlaces());

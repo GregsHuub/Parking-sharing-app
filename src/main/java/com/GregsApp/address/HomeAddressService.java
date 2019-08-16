@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -27,8 +28,8 @@ public class HomeAddressService {
         homeAddress.setUser(userById);
         homeAddressRepository.save(homeAddress);
     }
-    public void getHomeAddresses(){
-        homeAddressRepository.findAll();
+    public List<HomeAddress> getHomeAddresses(){
+        return homeAddressRepository.findAll();
     }
     public HomeAddress getUserHomeAddress(Long userId){
         HomeAddress addresById = homeAddressRepository.findOneById(userId);

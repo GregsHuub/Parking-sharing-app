@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "reservation_statistics")
 public class ReservationStatistics {
 
     @Id
@@ -13,7 +13,6 @@ public class ReservationStatistics {
     private Integer reservationsSumCount;
     private Double reservationsAvgCount;
     private LocalDateTime lastReservationTime;
-
 
 
     public Long getId() {

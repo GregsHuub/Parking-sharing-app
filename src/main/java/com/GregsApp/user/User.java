@@ -30,6 +30,7 @@ public class User extends BaseEntity {
     private LocalDateTime createdOn;
     @Column(name = "updated_time")
     private LocalDateTime updatedOn;
+    private boolean enabled;
 
     @PrePersist
     public void prePersist() {
@@ -150,5 +151,13 @@ public class User extends BaseEntity {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
