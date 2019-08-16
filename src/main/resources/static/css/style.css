@@ -137,7 +137,8 @@ body {
   color: #222;
   font-weight: 400;
   font-family: 'Montserrat';
-  background-image: url("../images/signup-bg.jpg");
+  /*background-image: url("../images/signup-bg.jpg");*/
+  background-image: url("http://www.gsfdcy.com/data/img/19/1328736-code-wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;

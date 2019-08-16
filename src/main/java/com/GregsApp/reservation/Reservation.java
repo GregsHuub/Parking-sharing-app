@@ -25,6 +25,7 @@ public class Reservation {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     @ManyToOne
+    @JoinColumn(name = "user_id" , nullable = false)
     private User user;
 
 

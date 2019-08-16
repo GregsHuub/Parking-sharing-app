@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -45,10 +46,9 @@ public class User extends BaseEntity {
     @OneToOne
     private HomeAddress homeAddress;
     @OneToMany(mappedBy = "user")
-    Set<ParkingAddress> parkingAddress;
+    Set<ParkingAddress> parkingAddress = new HashSet<>();
     @OneToMany(mappedBy = "user")
-    private Reservation reservation;
-
+    private Set<Reservation> reservation = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -114,6 +114,14 @@ public class User extends BaseEntity {
         this.updatedOn = updatedOn;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public HomeAddress getHomeAddress() {
         return homeAddress;
     }
@@ -130,6 +138,14 @@ public class User extends BaseEntity {
         this.parkingAddress = parkingAddress;
     }
 
+    public Set<Reservation> getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Set<Reservation> reservation) {
+        this.reservation = reservation;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -141,23 +157,10 @@ public class User extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
+                ", enabled=" + enabled +
                 ", homeAddress=" + homeAddress +
+                ", parkingAddress=" + parkingAddress +
+                ", reservation=" + reservation +
                 '}';
-    }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }

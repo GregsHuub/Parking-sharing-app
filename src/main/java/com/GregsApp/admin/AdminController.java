@@ -6,23 +6,35 @@ import com.GregsApp.users_parking_addresses.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
-public class adminController {
+public class AdminController {
 
     private UserService userService;
     private HomeAddressService homeAddressService;
     private ParkingService parkingService;
+    private AdminService adminService;
 
     @Autowired
-    public adminController(UserService userService, HomeAddressService homeAddressService, ParkingService parkingService) {
+    public AdminController(UserService userService, HomeAddressService homeAddressService, ParkingService parkingService, AdminService adminService) {
         this.userService = userService;
         this.homeAddressService = homeAddressService;
         this.parkingService = parkingService;
+        this.adminService = adminService;
+    }
+
+    @GetMapping("/createAccount")
+    public String createAccount(Model model){
+        model.addAttribute("admin", new Admin());
+        return "admin/admin_create_form";
+    }
+    @PostMapping("/saveAccount")
+    @ResponseBody
+    public String saveAccount(@ModelAttribute Admin admin){
+        adminService.createAdminProfile(admin);
+        return "account create properly and added to DataBase " + admin;
     }
 
     @ModelAttribute
