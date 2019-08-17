@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/login")
     public String createUserForm(Model model){
         model.addAttribute("user", new User());
-        return "index";
+        return "originalLoginForm";
     }
 
     @PostMapping("/save")
