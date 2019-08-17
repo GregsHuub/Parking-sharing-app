@@ -26,7 +26,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-//                .antMatchers("/api**").permitAll()
+                .antMatchers("/api**").permitAll()
+                .antMatchers("/admins**").authenticated()
 //                .antMatchers("/api/users/*/enable").permitAll()
 //                .antMatchers("/landing_page.jsp**").permitAll()
                 .anyRequest().permitAll();
