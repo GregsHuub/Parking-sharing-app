@@ -1,5 +1,6 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.nbpCurrencyApi.CurrencyJsonParsingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -16,11 +18,19 @@ public class ParkingController {
 
     private ParkingService parkingService;
     private ParkingRepository parkingRepository;
+    private CurrencyJsonParsingService currencyJsonParsingService;
 
     @Autowired
-    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository) {
+    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository, CurrencyJsonParsingService currencyJsonParsingService) {
         this.parkingService = parkingService;
         this.parkingRepository = parkingRepository;
+        this.currencyJsonParsingService = currencyJsonParsingService;
+    }
+    @ModelAttribute
+    public void nbpRates(Model model) throws IOException {
+        model.addAttribute("nbp_eur", currencyJsonParsingService.currencyValueFromNBP("eur"));
+        model.addAttribute("nbp_gbp", currencyJsonParsingService.currencyValueFromNBP("gbp"));
+        model.addAttribute("nbp_usd", currencyJsonParsingService.currencyValueFromNBP("usd"));
     }
 
     @GetMapping("/add")
