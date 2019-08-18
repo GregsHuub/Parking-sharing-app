@@ -4,6 +4,7 @@ import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,23 +28,24 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/api**").permitAll()
-                .antMatchers("/admins**").authenticated()
-//                .antMatchers("/api/users/*/enable").permitAll()
-//                .antMatchers("/landing_page.jsp**").permitAll()
+                .antMatchers("/admins**").permitAll()
+                .antMatchers("/api/main").permitAll()
+                .antMatchers("/api/users/*/enable").permitAll()
+                .antMatchers("/landing_page.jsp**").permitAll()
                 .anyRequest().permitAll();
 
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .successForwardUrl("/mainPage") // glowna strona, moze do zmiany todo
-                .defaultSuccessUrl("/mainPage")
-                .loginPage("/")
+                .successForwardUrl("/api/main") // glowna strona, moze do zmiany todo
+                .defaultSuccessUrl("/api/main")
+                .loginPage("/api/main")
                 .permitAll();
 
         http.logout()
                 .logoutUrl("/logut")
                 .permitAll()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/api/main");
     }
 
         @Bean
@@ -56,10 +58,10 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         public PasswordEncoder passwordEncoder(){
             return new BCryptPasswordEncoder(10);
         }
-        //    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("USER").password("pass").roles("USER").and()
-//                .withUser("ADMIN").password("password").roles("ADMIN");
-//    }
+            @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("USER").password("pass").roles("USER").and()
+                .withUser("ADMIN").password("password").roles("ADMIN");
+    }
     }
