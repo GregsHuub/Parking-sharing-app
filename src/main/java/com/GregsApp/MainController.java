@@ -2,8 +2,7 @@ package com.GregsApp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 public class MainController {
@@ -12,5 +11,34 @@ public class MainController {
     public String mainPage(){
         return "index2";
     }
+    @GetMapping("/about")
+    public String aboutPage(){
+        return "about";
+    }
+    @GetMapping("/404")
+    public String errorPage(){
+        return "404";
+    }
+    @GetMapping("/faq")
+    public String faq(){
+        return "faq";
+    }
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
+    @GetMapping("/gallery")
+    public String gallery(){
+        return "gallery";
+    }
+    @GetMapping("/blog_main")
+    public String blok(){
+        return "article";
+    }
+    @GetMapping("blog_details")
+    public String blogDetails(){
+        return "article-details";
+    }
+
 
 }
