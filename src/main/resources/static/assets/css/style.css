@@ -1973,15 +1973,15 @@ body,
 /*== What Do Area CSS ==*/
 
 .we-do-bg-1 {
-	background-image: url(assets/img/we-do/service1-img.png);
+	background-image: url("/assets/img/we-do/service1-img.png");
 }
 
 .we-do-bg-2 {
-	background-image: url(assets/img/we-do/service2-img.png);
+	background-image: url("/assets/img/we-do/service2-img.png");
 }
 
 .we-do-bg-3 {
-	background-image: url(assets/img/we-do/service3-img.png);
+	background-image: url("/assets/img/we-do/service3-img.png");
 }
 
 .single-we-do {
@@ -2218,10 +2218,10 @@ body,
 /*== Page Title CSS ==*/
 
 #page-title-area {
-	background-image: url("assets/img/page-title.jpg");
+	background-image: url("/assets/img/page-title.jpg");
 	background-position: center center;
 	background-size: cover;
-	padding-top: 220px;
+	padding-top: 240px;
 }
 
 #page-title-area .section-title {
@@ -2243,19 +2243,19 @@ body,
 }
 
 .car-thumb-1 {
-	background-image: url(assets/img/car/car-1.jpg);
+	background-image: url("/assets/img/car/car-1.jpg");
 }
 
 .car-thumb-2 {
-	background-image: url(assets/img/car/car-2.jpg);
+	background-image: url("/assets/img/car/car-2.jpg");
 }
 
 .car-thumb-3 {
-	background-image: url(assets/img/car/car-3.jpg);
+	background-image: url("/assets/img/car/car-3.jpg");
 }
 
 .car-thumb-4 {
-	background-image: url(assets/img/car/car-4.jpg);
+	background-image: url("/assets/img/car/car-4.jpg");
 }
 
 .car-list-thumb {
@@ -2648,19 +2648,19 @@ body,
 ================================*/
 
 .ser-thumb-bg-1 {
-	background-image: url(assets/img/car/car-1.jpg);
+	background-image: url("/assets/img/car/car-1.jpg");
 }
 
 .ser-thumb-bg-2 {
-	background-image: url(assets/img/car/car-2.jpg);
+	background-image: url("/assets/img/car/car-2.jpg");
 }
 
 .ser-thumb-bg-3 {
-	background-image: url(assets/img/car/car-3.jpg);
+	background-image: url("/assets/img/car/car-3.jpg");
 }
 
 .ser-thumb-bg-4 {
-	background-image: url(assets/img/car/car-5.jpg);
+	background-image: url("/assets/img/car/car-5.jpg");
 }
 
 .single-service-item {
@@ -2750,7 +2750,7 @@ body,
 ================================*/
 
 #our-facility {
-	/*background-image: url("/assets/img/slider-img/slider-img-1.jpg");*/
+	background-image: url("/assets/img/slider-img/slider-img-1.jpg");
 	background-size: cover;
 	background-position: center center;
 	color: #fff;

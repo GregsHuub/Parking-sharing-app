@@ -36,6 +36,11 @@ public class UserController {
         model.addAttribute("listOfUsers", userService.getList());
         return "userList";
     }
+    @GetMapping("/register")
+    public String registerForm(Model model){
+        model.addAttribute("user", new User());
+        return "register";
+    }
 
 
 }
