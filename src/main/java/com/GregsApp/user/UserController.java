@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/user/")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
@@ -18,18 +18,18 @@ public class UserController {
         this.userRepository = userRepository;
     }
     //-----------------------    LOGIN FORM -------------------------
-    @GetMapping("/login")
-    public String createUserForm(Model model){
-        model.addAttribute("user", new User());
-        return "originalLoginForm";
-    }
-
-    @PostMapping("/save")
-    @ResponseBody
-    public String save(@ModelAttribute User user){
-        userService.createUser(user);
-        return "Job done - Used added to DataBase(DB)";
-    }
+//    @GetMapping("/login")
+//    public String createUserForm(Model model){
+//        model.addAttribute("user", new User());
+//        return "originalLoginForm";
+//    }
+//
+//    @PostMapping("/save")
+//    @ResponseBody
+//    public String save(@ModelAttribute User user){
+//        userService.createUser(user);
+//        return "Job done - Used added to DataBase(DB)";
+//    }
 //-----------------------    LOGIN FORM -------------------------
     @GetMapping("/list")
     public String getListOfUsers(Model model){
@@ -38,8 +38,13 @@ public class UserController {
     }
     @GetMapping("/register")
     public String registerForm(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "register";
+    }
+    @PostMapping("/signUp/save")
+    public String signUpSave(@ModelAttribute UserDto userDto){
+        userService.createUser(userDto);
+        return "redirect:/main";
     }
 
 

@@ -16,13 +16,21 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //zweryfikowac todo
-    public void createUser(User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void createUser(UserDto userDto){
+        User user = new User();
+        user.setEnabled(true);
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setContactNumber(userDto.getContactNumber());
+        user.setEmail(userDto.getEmail());
+        user.setCreatedOn(userDto.getCreatedOn());
         userRepository.save(user);
     }
     public void updateUser(User user){
