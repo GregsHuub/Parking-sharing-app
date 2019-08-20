@@ -56,11 +56,6 @@ public class AdminController {
         model.addAttribute("parking", parkingService.allParkingPlaces());
         return "admin/admin_parkings_list";
     }
-    @GetMapping("/success")
-    @ResponseBody
-    public String testAdminResposne(User user){
-        return "udalo się zalogować jako admin " + user.getEmail();
-    }
 
 
     @GetMapping("/access-denied")

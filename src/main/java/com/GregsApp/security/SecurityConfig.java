@@ -20,7 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -31,10 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/user/**").permitAll()
+                .antMatchers("/admin/register").permitAll()
+                .antMatchers("/admin/register_save").permitAll()
                 .antMatchers("/main").authenticated()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/adminnnn/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable()
-                .formLogin().loginPage("/user/login").failureUrl("/user/login?error=true")
+                .formLogin().loginPage("/user/login")
+                .failureUrl("/user/login?error=true")
                 .defaultSuccessUrl("/admin/success")
                 .usernameParameter("email")
                 .passwordParameter("password")

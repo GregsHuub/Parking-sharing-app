@@ -1,7 +1,10 @@
 package com.GregsApp.admin;
 
+import com.GregsApp.authentication.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +23,10 @@ public class Admin {
     @NotBlank
     private String lastname;
     private UUID uuid = UUID.randomUUID();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
