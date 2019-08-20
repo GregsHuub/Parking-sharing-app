@@ -1,7 +1,6 @@
 package com.GregsApp.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,17 +9,16 @@ import java.util.List;
 public class AdminService {
 
     private AdminRepository adminRepository;
-    private PasswordEncoder passwordEncoder;
+//    private PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public AdminService(AdminRepository adminRepository, PasswordEncoder passwordEncoder) {
+    public AdminService(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public void createAdminProfile(Admin admin){
-        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+//        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         adminRepository.save(admin);
     }
     public void updateAdminProfile(Admin admin){

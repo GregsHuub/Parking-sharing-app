@@ -1,14 +1,17 @@
 package com.GregsApp.admin;
 
 import com.GregsApp.address.HomeAddressService;
+import com.GregsApp.user.User;
 import com.GregsApp.user.UserService;
 import com.GregsApp.users_parking_addresses.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+//@Secured("ROLE_ADMIN")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -52,6 +55,18 @@ public class AdminController {
     public String parkingList(Model model){
         model.addAttribute("parking", parkingService.allParkingPlaces());
         return "admin/admin_parkings_list";
+    }
+    @GetMapping("/success")
+    @ResponseBody
+    public String testAdminResposne(User user){
+        return "udalo się zalogować jako admin " + user.getEmail();
+    }
+
+
+    @GetMapping("/access-denied")
+    @ResponseBody
+    public String testAdminResposne(){
+        return "access-denied";
     }
 
 

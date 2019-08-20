@@ -1,8 +1,10 @@
 package com.GregsApp.user;
 
 import com.GregsApp.address.HomeAddress;
+import com.GregsApp.authentication.Role;
 import com.GregsApp.reservation.Reservation;
 import com.GregsApp.users_parking_addresses.ParkingAddress;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -21,10 +23,10 @@ public class User extends BaseEntity {
     private String firstName;
     @NotBlank(message = "You have to privide your lastname")
     private String lastName;
+    @NumberFormat(pattern = "[0-9]{9}")
     private String contactNumber;
     @Email
-    @NotBlank(message = "You have to provide your email")
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     private String password;
     @Column(name = "created_time")
@@ -32,6 +34,12 @@ public class User extends BaseEntity {
     @Column(name = "updated_time")
     private LocalDateTime updatedOn;
     private boolean enabled;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
 
     @PrePersist
     public void prePersist() {
@@ -146,6 +154,7 @@ public class User extends BaseEntity {
         this.reservation = reservation;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -162,5 +171,13 @@ public class User extends BaseEntity {
                 ", parkingAddress=" + parkingAddress +
                 ", reservation=" + reservation +
                 '}';
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

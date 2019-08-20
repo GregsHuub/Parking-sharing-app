@@ -65,7 +65,7 @@
 
                     <!--== Single HeaderTop Start ==-->
                     <div class="col-lg-3 text-center">
-                        <i class="fa fa-mobile"></i> Witaj<span sec:authentication="principal.firstName"></span>
+                        Witaj <span sec:authentication="name"></span> with authorities: <span sec:authentication="authorities"></span><i class="fa fa-mobile"></i>
                     </div>
                     <!--== Single HeaderTop End ==-->
 
@@ -156,7 +156,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <div class="slideshowcontent">sd
+                    <div class="slideshowcontent">
                         <div class="display-table">
                             <div class="display-table-cell">
                                 <h1></h1>

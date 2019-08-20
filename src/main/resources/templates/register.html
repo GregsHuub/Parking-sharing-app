@@ -180,18 +180,24 @@
 								<div class="name">
 									<div class="row">
 										<div class="col-md-6">
-											<input type="text" th:field="*{firstName}" placeholder="Imię">
+											<input type="text" th:field="*{firstName}" placeholder="Imię *">
 										</div>
 										<div class="col-md-6">
-											<input type="text" th:field="*{lastName}" placeholder="Nazwisko">
+											<input type="text" th:field="*{lastName}" placeholder="Nazwisko *">
 										</div>
+                                        <div class="col-md-6">
+                                            <input type="text" th:field="*{contactNumber}" placeholder="Numer kontaktowy">
+                                            <span th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"> Nie prawidłowy format</span>
+                                        </div>
+
+
 									</div>
 								</div>
 								<div class="username">
-									<input type="email" th:field="*{email}" placeholder="Email">
+									<input type="email" th:field="*{email}" placeholder="Email *">
 								</div>
 								<div class="password">
-									<input type="password" th:field="*{password}" placeholder="Hasło">
+									<input type="password" th:field="*{password}" placeholder="Hasło *">
 								</div>
 								<div class="log-btn">
 									<button type="submit"><i class="fa fa-check-square"></i> Zarejestruj !</button>

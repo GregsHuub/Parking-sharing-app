@@ -3,7 +3,10 @@ package com.GregsApp.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -17,35 +20,36 @@ public class UserController {
         this.userService = userService;
         this.userRepository = userRepository;
     }
-    //-----------------------    LOGIN FORM -------------------------
-//    @GetMapping("/login")
-//    public String createUserForm(Model model){
-//        model.addAttribute("user", new User());
-//        return "originalLoginForm";
-//    }
-//
-//    @PostMapping("/save")
-//    @ResponseBody
-//    public String save(@ModelAttribute User user){
-//        userService.createUser(user);
-//        return "Job done - Used added to DataBase(DB)";
-//    }
-//-----------------------    LOGIN FORM -------------------------
+
     @GetMapping("/list")
-    public String getListOfUsers(Model model){
+    public String getListOfUsers(Model model) {
         model.addAttribute("listOfUsers", userService.getList());
         return "userList";
     }
+
+    // ----------------- LOGIN ------------------
+    @GetMapping("/login")
+    public String loginForm() {
+        ;
+        return "login";
+    }
+
+
     @GetMapping("/register")
-    public String registerForm(Model model){
+    public String registerForm(Model model) {
         model.addAttribute("user", new UserDto());
         return "register";
     }
+
     @PostMapping("/signUp/save")
-    public String signUpSave(@ModelAttribute UserDto userDto){
+    public String signUpSave(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
         userService.createUser(userDto);
         return "redirect:/main";
     }
+    // ----------------- LOGIN ------------------
 
 
 }
