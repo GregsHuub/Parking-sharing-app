@@ -50,5 +50,10 @@ public class MainController {
         return "article-details";
     }
 
+    @GetMapping("/test")
+    public String testReplace(){
+        return "fragments/test";
+    }
+
 
 }
