@@ -2,6 +2,7 @@ package com.GregsApp.admin;
 
 import com.GregsApp.address.HomeAddressService;
 import com.GregsApp.user.User;
+import com.GregsApp.user.UserDto;
 import com.GregsApp.user.UserService;
 import com.GregsApp.users_parking_addresses.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +19,25 @@ public class AdminController {
     private UserService userService;
     private HomeAddressService homeAddressService;
     private ParkingService parkingService;
-    private AdminService adminService;
 
     @Autowired
-    public AdminController(UserService userService, HomeAddressService homeAddressService, ParkingService parkingService, AdminService adminService) {
+    public AdminController(UserService userService, HomeAddressService homeAddressService, ParkingService parkingService) {
         this.userService = userService;
         this.homeAddressService = homeAddressService;
         this.parkingService = parkingService;
-        this.adminService = adminService;
+
     }
 
     @GetMapping("/createAccount")
     public String createAccount(Model model){
-        model.addAttribute("admin", new Admin());
+        model.addAttribute("admin", new UserDto());
         return "admin/admin_create_form";
     }
     @PostMapping("/saveAccount")
     @ResponseBody
-    public String saveAccount(@ModelAttribute Admin admin){
-        adminService.createAdminProfile(admin);
-        return "account create properly and added to DataBase " + admin;
+    public String saveAccount(@ModelAttribute UserDto userDto){
+        userService.createUser(userDto);
+        return "account create properly and added to DataBase ";
     }
 
     @ModelAttribute

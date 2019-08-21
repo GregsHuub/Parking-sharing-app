@@ -21,7 +21,7 @@ public class User extends BaseEntity {
     private Long id;
     @NotBlank(message = "You have to provide your name")
     private String firstName;
-    @NotBlank(message = "You have to privide your lastname")
+    @NotBlank(message = "You have to provide your lastname")
     private String lastName;
     @NumberFormat(pattern = "[0-9]{9}")
     private String contactNumber;
@@ -167,6 +167,7 @@ public class User extends BaseEntity {
                 ", createdOn=" + createdOn +
                 ", updatedOn=" + updatedOn +
                 ", enabled=" + enabled +
+                ", roles=" + roles +
                 ", homeAddress=" + homeAddress +
                 ", parkingAddress=" + parkingAddress +
                 ", reservation=" + reservation +

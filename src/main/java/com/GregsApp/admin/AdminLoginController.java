@@ -1,5 +1,6 @@
 package com.GregsApp.admin;
 
+import com.GregsApp.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +23,13 @@ public class AdminLoginController {
     }
     @GetMapping("/register")
     public String adminRegisterForm(Model model){
-        model.addAttribute("admin", new Admin());
+        model.addAttribute("admin", new UserDto());
         return "admin/admin_register";
     }
     @PostMapping("/register_save")
-    @ResponseBody
-    public String adminSave(@ModelAttribute Admin admin){
-        adminService.createAdminProfile(admin);
-        return "admin profile ready: " + admin.getEmail() + " " + admin.getUuid();
+    public String adminSave(@ModelAttribute UserDto adminProfile){
+        adminService.createAdminAccount(adminProfile);
+        return "redirect:/main";
     }
 
 }

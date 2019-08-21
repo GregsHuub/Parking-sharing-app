@@ -20,9 +20,6 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
 
-//    private PasswordEncoder passwordEncoder;
-
-
     @Autowired
     public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -30,7 +27,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //zweryfikowac todo
     public void createUser(UserDto userDto) {
         User user = new User();
         user.setEnabled(true);
@@ -47,14 +43,6 @@ public class UserService {
 
         userRepository.save(user);
     }
-//    public void saveUser(User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setEnabled(true);
-//        Role userRole = roleRepository.findOneByName("ROLE_USER");
-//        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-//        userRepository.save(user);
-//    }
-
 
     public User findUserByEmail(String email) {
         return userRepository.findOneByEmail(email);
