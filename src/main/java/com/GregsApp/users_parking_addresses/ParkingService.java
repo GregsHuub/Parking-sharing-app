@@ -1,5 +1,7 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.user.User;
+import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public class ParkingService {
 
     private ParkingRepository parkingRepository;
+    private UserRepository userRepository;
 
 
     @Autowired
@@ -18,7 +21,9 @@ public class ParkingService {
         this.parkingRepository = parkingRepository;
     }
 
-    public void createParkingPlace(ParkingAddress parkingAddress){
+    public void createParkingPlace(ParkingAddress parkingAddress)
+    {
+
         parkingRepository.save(parkingAddress);
     }
     public void updateParkingPlace(ParkingAddress parkingAddress){

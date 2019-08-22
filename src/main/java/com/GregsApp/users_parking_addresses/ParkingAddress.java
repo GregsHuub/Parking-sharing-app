@@ -28,7 +28,7 @@ public class ParkingAddress {
     private LocalDateTime createdOn;
     private boolean reserved; // default false;
     private String accessInformation;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
