@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and().csrf().disable()
                 .formLogin().loginPage("/user/login")
                 .failureUrl("/user/login?error=true")
-                .defaultSuccessUrl("/admin/success")
+                .defaultSuccessUrl("/main")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()

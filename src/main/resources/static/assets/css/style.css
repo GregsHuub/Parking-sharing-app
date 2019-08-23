@@ -1097,6 +1097,10 @@ a.slicknav_btn {
 	transform: translateY(-50%);
 	width: 105px;
 }
+.logout {
+	height: 10px;
+	width: 10px;
+}
 
 .single-testimonial h3 {
 	color: #ffd000;

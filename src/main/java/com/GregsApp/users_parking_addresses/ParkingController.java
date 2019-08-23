@@ -26,13 +26,6 @@ public class ParkingController {
         this.currencyJsonParsingService = currencyJsonParsingService;
         this.userRepository = userRepository;
     }
-//    @ModelAttribute
-//    public void nbpRates(Model model) throws IOException {
-//        model.addAttribute("nbp_eur", currencyJsonParsingService.currencyValueFromNBP("eur"));
-//        model.addAttribute("nbp_gbp", currencyJsonParsingService.currencyValueFromNBP("gbp"));
-//        model.addAttribute("nbp_usd", currencyJsonParsingService.currencyValueFromNBP("usd"));
-//        model.addAttribute("time_now", LocalDateTime.now().withNano(0).withSecond(0).withHour(0));
-//    }
 
 //    testowa
     @GetMapping("/add")
@@ -59,6 +52,7 @@ public class ParkingController {
         model.addAttribute("parkingAddresses", parkingAddresses);
         return "parking/parkingList";
     }
+
 
 
 }
