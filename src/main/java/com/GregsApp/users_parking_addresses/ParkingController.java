@@ -62,6 +62,16 @@ public class ParkingController {
         return "<h1>Parkings:</h1><br>" + parkings;
     }
 
+//    todo sortowanie po kilku rzeczach
+//    @GetMapping("/find_by")
+//    public String findParkings(@RequestParam("street")String street){
+//        if(street == null){
+//
+//        }
+//        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
+//
+//    }
+
 
 
 

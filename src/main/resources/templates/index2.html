@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:replace="fragments/head :: head"></div>
 <body class="loader-active">
 
@@ -15,31 +16,32 @@
                         <div class="display-table-cell">
                             <h1></h1>
                             <p>NIE TRAĆ CZASU NA SZUKANIE PARKINGU<br>ZAREZERWUJ SOBIE MIEJSCE W KILKA MINUT!</p>
-
+                            <br>
+                            <p>Mozesz wyszukac parking po wpisaniu <b>ulicy</b> lub rejonu np. <b>centrum</b></p>
                             <div class="book-ur-car">
                                 <form th:action="@{/parking/test_param}" method="get">
                                     <div style="border: white 1px solid">
                                         <input type="text" th:name="street" th:placeholder="street"/>
-                                </div>
+                                    </div>
 
 <!--                                    <div class="pick-date bookinput-item">-->
 <!--                                        <span><input id="startDate2" placeholder="OD"/></span>-->
 <!--                                    </div>-->
 
-<!--                                     todo czas zrobic-->
+<!--                                    todo czas zrobic-->
 
 <!--                                    <div class="return-date bookinput-item">-->
 <!--                                        <input id="endDate2" placeholder="DO"/>-->
 <!--                                    </div>-->
-
-<!--                                    <div class="car-choose bookinput-item">-->
-<!--                                        <select class="custom-select">-->
-<!--                                            <option selected>Choose Car</option>-->
-<!--                                            <option value="1">BMW</option>-->
-<!--                                            <option value="2">Audi</option>-->
-<!--                                            <option value="3">Lexus</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <p></p>
+                                    <div class="car-choose bookinput-item">
+                                        <select name="area" id="area" class="custom-select">
+                                            <option value="" th:disabled="disabled" th:selected="selected"> Wybierz rejon</option>
+                                            <option value="center">Centrum</option>
+                                            <option value="krzyki">Krzyki</option>
+                                            <option value="dogField">Psie pole</option>
+                                        </select>
+                                    </div>
 
                                     <div class="bookcar-btn bookinput-item">
                                         <button type="submit">Znajdź parkin</button>
@@ -1058,7 +1060,7 @@
 <!--=======================Javascript============================-->
 <!--=== Jquery Min Js ===-->
 <script>
-    $(function() {
+    $(function () {
         $('input[name="datetimes"]').daterangepicker({
             timePicker: true,
             startDate: moment().startOf('hour'),

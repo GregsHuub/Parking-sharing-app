@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -42,17 +44,20 @@ public class ParkingService {
         return parkingRepository.findAll();
     }
     public List<ParkingAddress> allParkingPlacesByStreetName(String streetName){
-        List<ParkingAddress> allByStreet = parkingRepository.findAllByStreet(streetName);
-        return allByStreet;
+        return parkingRepository.findAllByStreet(streetName);
     }
     public List<ParkingAddress> allParkingPlacesByStreetNumber(Integer streetNumber){
-        List<ParkingAddress> allByStreetNumber = parkingRepository.findAllByStreetNumber(streetNumber);
-        return allByStreetNumber;
+        return parkingRepository.findAllByStreetNumber(streetNumber);
     }
-
     public List<ParkingAddress> allParkingsByPartStreetName(String streetLetters){
          return parkingRepository.findAllByStreetContaining(streetLetters);
     }
+//    public List<ParkingAddress> parkingsByDetails(String street, LocalTime hours, LocalDate date){
+//        List<ParkingAddress> all = parkingRepository.findAll();
+//        if(street == null){
+//        List<ParkingAddress> temp = all.stream().filter(s -> s.get)
+//    todo napisac ta logike ale nie dla ParkingAddress, dla czegos gdzie bedzie zamowienie
+//    }
 
 
 
