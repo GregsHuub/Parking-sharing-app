@@ -15,6 +15,7 @@ public interface ParkingRepository extends JpaRepository<ParkingAddress, Long> {
     List<ParkingAddress> findAllByReserved(boolean trueOrFalse);
     List<ParkingAddress> findAllByMaxHeightBetween(Double valueFrom, Double valueTO);
     List<ParkingAddress> findAllByMaxWidthBetween(Double valueFrom, Double valueTO);
+    List<ParkingAddress> findAllByStreetContaining(String containValue);
 
 
 

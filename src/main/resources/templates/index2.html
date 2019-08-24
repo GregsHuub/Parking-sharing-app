@@ -17,29 +17,29 @@
                             <p>NIE TRAĆ CZASU NA SZUKANIE PARKINGU<br>ZAREZERWUJ SOBIE MIEJSCE W KILKA MINUT!</p>
 
                             <div class="book-ur-car">
-                                <form th:action="@{/reservation/add}" method="post">
-                                    <div class="pick-location bookinput-item">
-                                        <input type="text" placeholder="Nazwa ulicy"/>
-                                    </div>
+                                <form th:action="@{/parking/test_param}" method="get">
+                                    <div style="border: white 1px solid">
+                                        <input type="text" th:name="street" th:placeholder="street"/>
+                                </div>
 
-                                    <div class="pick-date bookinput-item">
-                                        <input id="startDate2" placeholder="OD"/>
-                                    </div>
+<!--                                    <div class="pick-date bookinput-item">-->
+<!--                                        <span><input id="startDate2" placeholder="OD"/></span>-->
+<!--                                    </div>-->
 
 <!--                                     todo czas zrobic-->
 
-                                    <div class="return-date bookinput-item">
-                                        <input id="endDate2" placeholder="DO"/>
-                                    </div>
+<!--                                    <div class="return-date bookinput-item">-->
+<!--                                        <input id="endDate2" placeholder="DO"/>-->
+<!--                                    </div>-->
 
-                                    <div class="car-choose bookinput-item">
-                                        <select class="custom-select">
-                                            <option selected>Choose Car</option>
-                                            <option value="1">BMW</option>
-                                            <option value="2">Audi</option>
-                                            <option value="3">Lexus</option>
-                                        </select>
-                                    </div>
+<!--                                    <div class="car-choose bookinput-item">-->
+<!--                                        <select class="custom-select">-->
+<!--                                            <option selected>Choose Car</option>-->
+<!--                                            <option value="1">BMW</option>-->
+<!--                                            <option value="2">Audi</option>-->
+<!--                                            <option value="3">Lexus</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
 
                                     <div class="bookcar-btn bookinput-item">
                                         <button type="submit">Znajdź parkin</button>

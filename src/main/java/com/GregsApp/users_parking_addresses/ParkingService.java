@@ -50,6 +50,10 @@ public class ParkingService {
         return allByStreetNumber;
     }
 
+    public List<ParkingAddress> allParkingsByPartStreetName(String streetLetters){
+         return parkingRepository.findAllByStreetContaining(streetLetters);
+    }
+
 
 
 

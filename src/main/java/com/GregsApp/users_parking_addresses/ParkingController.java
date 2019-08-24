@@ -53,6 +53,17 @@ public class ParkingController {
         return "parking/parkingList";
     }
 
+    // pobieranie parametru street do testu //
+
+    @RequestMapping(value="/test_param", method = RequestMethod.GET)
+    @ResponseBody
+    public String foundAddressByStreetPart(@RequestParam("street") String street){
+        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
+        return "<h1>Parkings:</h1><br>" + parkings;
+    }
+
+
+
 
 
 }
