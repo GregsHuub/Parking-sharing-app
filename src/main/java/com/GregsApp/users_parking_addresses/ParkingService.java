@@ -23,9 +23,9 @@ public class ParkingService {
 
     public void createParkingPlace(ParkingAddress parkingAddress)
     {
-
         parkingRepository.save(parkingAddress);
     }
+
     public void updateParkingPlace(ParkingAddress parkingAddress){
         ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
         parkingRepository.save(parkingById);

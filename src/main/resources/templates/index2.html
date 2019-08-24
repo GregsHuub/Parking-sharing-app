@@ -19,20 +19,13 @@
                             <div class="book-ur-car">
                                 <form th:action="@{/reservation/add}" method="post">
                                     <div class="pick-location bookinput-item">
-                                        <select class="custom-select">
-                                            <option selected>WYBIERZ MIEJSCE</option>
-                                            <option value="1">CENTRUM</option>
-                                            <option value="2">KRZYKI</option>
-                                            <option value="3">PSIE POLE</option>
-                                        </select>
+                                        <input type="text" placeholder="Nazwa ulicy"/>
                                     </div>
 
                                     <div class="pick-date bookinput-item">
                                         <input id="startDate2" placeholder="OD"/>
                                     </div>
-                                    <div class="pick-date bookinput-item">
-                                        <input type="text" name="datetimes" />
-                                    </div>
+
 <!--                                     todo czas zrobic-->
 
                                     <div class="return-date bookinput-item">
@@ -49,7 +42,7 @@
                                     </div>
 
                                     <div class="bookcar-btn bookinput-item">
-                                        <button type="submit">Wynajmij</button>
+                                        <button type="submit">Znajdź parkin</button>
                                     </div>
                                 </form>
                             </div>
