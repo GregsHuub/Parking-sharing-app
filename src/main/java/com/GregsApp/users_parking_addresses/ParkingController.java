@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -55,12 +57,12 @@ public class ParkingController {
 
     // pobieranie parametru street do testu //
 
-    @RequestMapping(value="/test_param", method = RequestMethod.GET)
-    @ResponseBody
-    public String foundAddressByStreetPart(@RequestParam("street") String street){
-        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
-        return "<h1>Parkings:</h1><br>" + parkings;
-    }
+//    @RequestMapping(value="/test_param", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String foundAddressByStreetPart(@RequestParam("street") String street){
+//        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
+//        return "<h1>Parkings:</h1><br>" + parkings;
+//    }
 
 //    todo sortowanie po kilku rzeczach
 //    @GetMapping("/find_by")
@@ -69,8 +71,17 @@ public class ParkingController {
 //
 //        }
 //        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
-//
 //    }
+    @GetMapping("/test_param")
+    @ResponseBody
+    public String byDate(@RequestParam("date") String date, @RequestParam("street") String street) {
+        date = date.replace("-", "");
+        int year, month, day;
+        year = Integer.parseInt(date.substring(0, 4));
+        month = Integer.parseInt(date.substring(3,6));
+        day = Integer.parseInt(date.substring(6,8));
+        return "data + " + date + " <br>" + street + " " + year + " <br>" + month + " " + day;
+    }
 
 
 
