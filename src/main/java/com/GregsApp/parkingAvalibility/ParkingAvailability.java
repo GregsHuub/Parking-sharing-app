@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class ParkingAvailability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean availabilityNow;
-    private Date updateStatus;
+    private LocalDateTime updateStatusTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date avabilityParkingTimeSetByOwner;
     @OneToMany(mappedBy = "parkingAvailability")
@@ -29,7 +30,7 @@ public class ParkingAvailability {
         return "ParkingAvailability{" +
                 "id=" + id +
                 ", availabilityNow=" + availabilityNow +
-                ", updateStatus=" + updateStatus +
+                ", updateStatus=" + updateStatusTime +
                 ", avabilityParkingTimeSetByOwner=" + avabilityParkingTimeSetByOwner +
                 '}';
     }

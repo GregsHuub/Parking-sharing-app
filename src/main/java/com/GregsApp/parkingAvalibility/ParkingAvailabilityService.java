@@ -5,6 +5,7 @@ import com.GregsApp.users_parking_addresses.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ParkingAvailabilityService {
     public void setParkingAvabilityStatus(Long parkingAddressById, boolean turnOnAvability){
         ParkingAddress parkingById = parkingRepository.findOneById(parkingAddressById);
         ParkingAvailability oneById = PAR.findOneById(parkingById.getId());
+        oneById.setUpdateStatusTime(LocalDateTime.now());
         oneById.setAvailabilityNow(turnOnAvability);
     }
     public List<ParkingAvailability> getAllListOfParkAvaib(){
@@ -35,15 +37,10 @@ public class ParkingAvailabilityService {
     public List<ParkingAvailability> getParkingAvabilityByStatus(boolean findByAvabilityStatus){
         return PAR.findAllByAvailabilityNow(findByAvabilityStatus);
     }
-    // todo rozkminic czy to tak zadziala
+    // todo rozkminic czy to tak zadzial
     public void createParkingWithAvability(ParkingAddress parkingAddress){
         ParkingAddress saved = parkingRepository.save(parkingAddress);
         ParkingAvailability oneById = PAR.findOneById(saved.getId());
         PAR.save(oneById);
-    }
-    public void updateParkingAddressWithAvability(ParkingAddress parkingAddress){
-        ParkingAddress byId = parkingRepository.findOneById(parkingAddress.getId());
-        ParkingAvailability avabilityById = PAR.findOneById(byId.getId());
-        PAR.save(avabilityById);
     }
 }
