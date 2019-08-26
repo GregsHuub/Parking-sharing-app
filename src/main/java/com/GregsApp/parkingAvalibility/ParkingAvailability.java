@@ -16,7 +16,7 @@ public class ParkingAvailability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private boolean availabilityNow;
     private Date updateStatus;
     @Temporal(TemporalType.TIMESTAMP)

@@ -11,5 +11,5 @@ public interface ParkingAvabilityRepository extends JpaRepository<ParkingAvailab
 
         List<ParkingAvailability> findAllByAvailabilityNow(boolean availableOrNot);
 
-        List<ParkingAvailability> findOneById(int id);
+        ParkingAvailability findOneById(Long id);
 }
