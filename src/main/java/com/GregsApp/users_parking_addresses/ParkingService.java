@@ -54,9 +54,7 @@ public class ParkingService {
          return parkingRepository.findAllByStreetContaining(streetLetters);
     }
 
-    public List<ParkingAddress> allParkingsByDateBetween(Date dateFrom, Date dateTo){
 
-    }
 
 
 

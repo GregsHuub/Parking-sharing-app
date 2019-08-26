@@ -169,6 +169,8 @@ public class ParkingAddress {
                 ", createdOn=" + createdOn +
                 ", reserved=" + reserved +
                 ", accessInformation='" + accessInformation + '\'' +
+                ", user=" + user +
+                ", parkingAvailability=" + parkingAvailability +
                 '}';
     }
 
@@ -178,5 +180,13 @@ public class ParkingAddress {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public ParkingAvailability getParkingAvailability() {
+        return parkingAvailability;
+    }
+
+    public void setParkingAvailability(ParkingAvailability parkingAvailability) {
+        this.parkingAvailability = parkingAvailability;
     }
 }
