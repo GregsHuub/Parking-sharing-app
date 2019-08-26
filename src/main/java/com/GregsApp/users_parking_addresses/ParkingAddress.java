@@ -1,11 +1,13 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.parkingAvalibility.ParkingAvailability;
 import com.GregsApp.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 @Entity
 @Table(name = "users_parking_addresses")
@@ -31,6 +33,9 @@ public class ParkingAddress {
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="user_id", nullable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "park_avability_id", nullable = false)
+    private ParkingAvailability parkingAvailability;
 
 
     // information about how to get there, where to buy a ticket, speak with reception etc.

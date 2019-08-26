@@ -1,15 +1,16 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.date.DateTimeConfig;
 import com.GregsApp.nbpCurrencyApi.CurrencyJsonParsingService;
 import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,13 +21,15 @@ public class ParkingController {
     private ParkingRepository parkingRepository;
     private CurrencyJsonParsingService currencyJsonParsingService;
     private UserRepository userRepository;
+    private DateTimeConfig dateTimeConfig;
 
     @Autowired
-    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository, CurrencyJsonParsingService currencyJsonParsingService, UserRepository userRepository) {
+    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository, CurrencyJsonParsingService currencyJsonParsingService, UserRepository userRepository, DateTimeConfig dateTimeConfig) {
         this.parkingService = parkingService;
         this.parkingRepository = parkingRepository;
         this.currencyJsonParsingService = currencyJsonParsingService;
         this.userRepository = userRepository;
+        this.dateTimeConfig = dateTimeConfig;
     }
 
 //    testowa
@@ -72,15 +75,22 @@ public class ParkingController {
 //        }
 //        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
 //    }
-    @GetMapping("/test_param")
+//    @GetMapping("/test_param")
+//    @ResponseBody
+//    public String byDate(@RequestParam("date") String date, @RequestParam("street") String street) {
+//        date = date.replace("-", "");
+//        int year, month, day;
+//        year = Integer.parseInt(date.substring(0, 4));
+//        month = Integer.parseInt(date.substring(3,6));
+//        day = Integer.parseInt(date.substring(6,8));
+//        return "data + " + date + " <br>" + street + " " + year + " <br>" + month + " " + day;
+//    }
+
+    @GetMapping("/time_test")
     @ResponseBody
-    public String byDate(@RequestParam("date") String date, @RequestParam("street") String street) {
-        date = date.replace("-", "");
-        int year, month, day;
-        year = Integer.parseInt(date.substring(0, 4));
-        month = Integer.parseInt(date.substring(3,6));
-        day = Integer.parseInt(date.substring(6,8));
-        return "data + " + date + " <br>" + street + " " + year + " <br>" + month + " " + day;
+    public String byDateTest(@RequestParam("date") LocalDateTime localDateTime){
+        return "" + localDateTime;
+
     }
 
 

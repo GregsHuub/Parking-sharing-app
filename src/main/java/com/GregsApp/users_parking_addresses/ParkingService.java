@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,12 +53,10 @@ public class ParkingService {
     public List<ParkingAddress> allParkingsByPartStreetName(String streetLetters){
          return parkingRepository.findAllByStreetContaining(streetLetters);
     }
-//    public List<ParkingAddress> parkingsByDetails(String street, LocalTime hours, LocalDate date){
-//        List<ParkingAddress> all = parkingRepository.findAll();
-//        if(street == null){
-//        List<ParkingAddress> temp = all.stream().filter(s -> s.get)
-//    todo napisac ta logike ale nie dla ParkingAddress, dla czegos gdzie bedzie zamowienie
-//    }
+
+    public List<ParkingAddress> allParkingsByDateBetween(Date dateFrom, Date dateTo){
+
+    }
 
 
 
