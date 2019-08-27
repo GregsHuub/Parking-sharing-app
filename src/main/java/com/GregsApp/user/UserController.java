@@ -47,7 +47,7 @@ public class UserController {
             return "register";
         }
         userService.createUser(userDto);
-        return "redirect:/main";
+        return "redirect:/";
     }
     // ----------------- LOGIN ------------------
 

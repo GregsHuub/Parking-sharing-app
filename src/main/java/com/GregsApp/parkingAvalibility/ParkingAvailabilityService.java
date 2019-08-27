@@ -38,9 +38,8 @@ public class ParkingAvailabilityService {
         return PAR.findAllByAvailabilityNow(findByAvabilityStatus);
     }
     // todo rozkminic czy to tak zadzial
-    public void createParkingWithAvability(ParkingAddress parkingAddress){
-        ParkingAddress saved = parkingRepository.save(parkingAddress);
-        ParkingAvailability oneById = PAR.findOneById(saved.getId());
-        PAR.save(oneById);
+    public ParkingAvailability createParkingWithAvability(ParkingAddress parkingAddress){
+        ParkingAvailability oneById = PAR.findOneById(parkingAddress.getId());
+        return PAR.save(oneById);
     }
 }

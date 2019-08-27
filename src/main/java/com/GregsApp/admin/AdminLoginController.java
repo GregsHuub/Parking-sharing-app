@@ -29,7 +29,7 @@ public class AdminLoginController {
     @PostMapping("/register_save")
     public String adminSave(@ModelAttribute UserDto adminProfile){
         adminService.createAdminAccount(adminProfile);
-        return "redirect:/main";
+        return "redirect:/";
     }
 
 }

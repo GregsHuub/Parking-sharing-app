@@ -17,7 +17,7 @@ public class MainController {
         this.userService = userService;
     }
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String mainPage(){
         return "index2";
     }

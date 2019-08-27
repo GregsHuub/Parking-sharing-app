@@ -30,32 +30,51 @@ public class ParkingAddress {
     private LocalDateTime createdOn;
     private boolean reserved; // default false;
     private String accessInformation;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id", nullable = false)
+
+    private String fileName;
+    private String fileType;
+    @Lob
+    private byte[] data;
+
+
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "park_avability_id", nullable = false)
+    @JoinColumn(name = "park_avability_id")
     private ParkingAvailability parkingAvailability;
 
 
-    // information about how to get there, where to buy a ticket, speak with reception etc.
-    // example
-//    1) Take a ticket at the entrance.
-//
-//2) Park at the location of your choice.
-//
-//3) Introduce yourself to the reception with your reservation received by email.
-//    1) Take a ticket at the entrance of the car park
-//
-//2) You can park on any spot parking spot
-//
-//3) Upon leaving, validate your ticket at your desk by showing your mobypark booking confirmation.
-
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
         // to zastosowac potem
         createdOn = LocalDateTime.now().withNano(0).withSecond(0);
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     public Long getId() {
