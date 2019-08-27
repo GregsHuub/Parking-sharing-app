@@ -1,5 +1,7 @@
 package com.GregsApp.users_parking_addresses;
 
+import com.GregsApp.exceptions.FileStorageException;
+import com.GregsApp.exceptions.MyFileNotFoundException;
 import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -20,13 +23,18 @@ public class ParkingService {
     private ParkingRepository parkingRepository;
     private UserRepository userRepository;
 
-    public ParkingAddress storeFile(MultipartFile file){
+    public ParkingAddress storeFile(MultipartFile file, ParkingAddress parkingAddress) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
-            if(fileName.contains("..")) {
-                throw new Exception
+            if (fileName.contains("..")) {
+                throw new FileStorageException("Nazwa zawiera nieprawidłową ścieżkę: " + fileName);
             }
+
+            ParkingAddress oneById = parkingRepository.findOneById(parkingAddress.getId());
+            return parkingRepository.save(oneById);
+        } catch (FileStorageException fse) {
+            throw new FileStorageException("Nie udało się zapisać pliku " + fileName + ". Spróbuj ponownie", fse);
         }
     }
 

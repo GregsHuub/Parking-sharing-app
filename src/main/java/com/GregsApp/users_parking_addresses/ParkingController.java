@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -49,8 +51,14 @@ public class ParkingController {
     }
 
     @PostMapping("/save")
-    public String saveParking(@ModelAttribute ParkingAddress parkingAddress) {
+    public String saveParking(@ModelAttribute ParkingAddress parkingAddress, @RequestParam("file")MultipartFile file) {
         parkingService.createParkingPlace(parkingAddress);
+        parkingService.storeFile(file, parkingAddress);
+
+//        String fileDOnwloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("/downloadfile")
+//                .path(parkingAddress.getFileName())
+//                .toUriString();
 
         return "redirect:/parking/list";
     }

@@ -46,6 +46,8 @@ public class ParkingAddress {
     private ParkingAvailability parkingAvailability;
 
 
+
+
     @PrePersist
     public void prePersist() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
