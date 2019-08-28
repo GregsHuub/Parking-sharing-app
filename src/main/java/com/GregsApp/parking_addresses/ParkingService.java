@@ -1,8 +1,6 @@
-package com.GregsApp.users_parking_addresses;
+package com.GregsApp.parking_addresses;
 
 import com.GregsApp.exceptions.FileStorageException;
-import com.GregsApp.exceptions.MyFileNotFoundException;
-import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +8,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,24 +17,11 @@ public class ParkingService {
     private ParkingRepository parkingRepository;
     private UserRepository userRepository;
 
-    public ParkingAddress storeFile(MultipartFile file, ParkingAddress parkingAddress) {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-        try {
-            if (fileName.contains("..")) {
-                throw new FileStorageException("Nazwa zawiera nieprawidłową ścieżkę: " + fileName);
-            }
-
-            ParkingAddress oneById = parkingRepository.findOneById(parkingAddress.getId());
-            return parkingRepository.save(oneById);
-        } catch (FileStorageException fse) {
-            throw new FileStorageException("Nie udało się zapisać pliku " + fileName + ". Spróbuj ponownie", fse);
-        }
-    }
 
     @Autowired
-    public ParkingService(ParkingRepository parkingRepository) {
+    public ParkingService(ParkingRepository parkingRepository, UserRepository userRepository) {
         this.parkingRepository = parkingRepository;
+        this.userRepository = userRepository;
     }
 
     public void createParkingPlace(ParkingAddress parkingAddress) {
@@ -78,6 +59,19 @@ public class ParkingService {
     }
 
 //    IMAGE     //
+public ParkingAddress storeFile(MultipartFile file, ParkingAddress parkingAddress) {
+    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
+    try {
+        if (fileName.contains("..")) {
+            throw new FileStorageException("Nazwa zawiera nieprawidłową ścieżkę: " + fileName);
+        }
+
+        ParkingAddress oneById = parkingRepository.findOneById(parkingAddress.getId());
+        return parkingRepository.save(oneById);
+    } catch (FileStorageException fse) {
+        throw new FileStorageException("Nie udało się zapisać pliku " + fileName + ". Spróbuj ponownie", fse);
+    }
+}
 
 }

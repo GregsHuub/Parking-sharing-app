@@ -1,7 +1,7 @@
 package com.GregsApp.parkingAvalibility;
 
-import com.GregsApp.users_parking_addresses.ParkingAddress;
-import com.GregsApp.users_parking_addresses.ParkingRepository;
+import com.GregsApp.parking_addresses.ParkingAddress;
+import com.GregsApp.parking_addresses.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

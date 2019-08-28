@@ -3,7 +3,7 @@ package com.GregsApp.user;
 import com.GregsApp.address.HomeAddress;
 import com.GregsApp.authentication.Role;
 import com.GregsApp.reservation.Reservation;
-import com.GregsApp.users_parking_addresses.ParkingAddress;
+import com.GregsApp.parking_addresses.ParkingAddress;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;

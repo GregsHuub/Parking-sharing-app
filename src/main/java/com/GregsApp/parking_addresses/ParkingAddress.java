@@ -1,4 +1,4 @@
-package com.GregsApp.users_parking_addresses;
+package com.GregsApp.parking_addresses;
 
 import com.GregsApp.parkingAvalibility.ParkingAvailability;
 import com.GregsApp.user.User;
@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 @Entity
 @Table(name = "users_parking_addresses")

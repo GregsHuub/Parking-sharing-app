@@ -1,4 +1,4 @@
-package com.GregsApp.users_parking_addresses;
+package com.GregsApp.parking_addresses;
 
 import com.GregsApp.date.DateTimeConfig;
 import com.GregsApp.nbpCurrencyApi.CurrencyJsonParsingService;
@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -35,77 +33,40 @@ public class ParkingController {
         this.availabilityService = availabilityService;
     }
 
-    //    testowa
-    @GetMapping("/add")
-    public String addParking(Model model) {
-        model.addAttribute("parkingAddress", new ParkingAddress());
-        return "parking/parking_add_form";
-    }
-
-    //    testowa
+    //-------------    ADD PARKING VIEW ******START --------------//
     @GetMapping("/add_form")
     public String addParkingForm(Model model, @ModelAttribute("currentUser") User user) {
         model.addAttribute("parkingAddress", new ParkingAddress());
-
         return "parking/parking_add_form_real";
     }
-
     @PostMapping("/save")
-    public String saveParking(@ModelAttribute ParkingAddress parkingAddress, @RequestParam("file")MultipartFile file) {
+    public String saveParking(@ModelAttribute ParkingAddress parkingAddress) {
         parkingService.createParkingPlace(parkingAddress);
-        parkingService.storeFile(file, parkingAddress);
-
-//        String fileDOnwloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-//                .path("/downloadfile")
-//                .path(parkingAddress.getFileName())
-//                .toUriString();
-
         return "redirect:/parking/list";
     }
+    //-------------    ADD PARKING VIEW *****FINISH --------------//
 
+
+
+
+    //-------------    PARKING VIEW LIST   --------------//
     @GetMapping("/list")
     public String listOfParkings(Model model) {
         List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
         model.addAttribute("parkingAddresses", parkingAddresses);
         return "parking/parkingList";
     }
+    //-------------    PARKING VIEW LIST   --------------//
 
 
-    // pobieranie parametru street do testu //
 
+    //-------------    PARKING FIND BY PARAMETER   --------------//
     @RequestMapping(value = "/test_param", method = RequestMethod.GET)
     @ResponseBody
     public String foundAddressByStreetPart(@RequestParam("street") String street) {
-        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
-
-        if (parkings == null) {
-            return "pusto";
-        }
-        return "" + parkings;
-        }
+        return "" + parkingService.allParkingsByPartStreetName(street);
     }
-
-
-//    todo sortowanie po kilku rzeczach
-//    @GetMapping("/find_by")
-//    public String findParkings(@RequestParam("street")String street){
-//        if(street == null){
-//
-//        }
-//        List<ParkingAddress> parkings = parkingService.allParkingsByPartStreetName(street);
-//    }
-//    @GetMapping("/test_param")
-//    @ResponseBody
-//    public String byDate(@RequestParam("date") String date, @RequestParam("street") String street) {
-//        date = date.replace("-", "");
-//        int year, month, day;
-//        year = Integer.parseInt(date.substring(0, 4));
-//        month = Integer.parseInt(date.substring(3,6));
-//        day = Integer.parseInt(date.substring(6,8));
-//        return "data + " + date + " <br>" + street + " " + year + " <br>" + month + " " + day;
-//    }
-
-
+}
 
 
 

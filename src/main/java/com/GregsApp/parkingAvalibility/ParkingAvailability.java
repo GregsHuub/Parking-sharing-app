@@ -1,6 +1,6 @@
 package com.GregsApp.parkingAvalibility;
 
-import com.GregsApp.users_parking_addresses.ParkingAddress;
+import com.GregsApp.parking_addresses.ParkingAddress;
 import lombok.Getter;
 import lombok.Setter;
 
