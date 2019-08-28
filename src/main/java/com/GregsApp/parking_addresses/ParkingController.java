@@ -39,6 +39,7 @@ public class ParkingController {
         model.addAttribute("parkingAddress", new ParkingAddress());
         return "parking/parking_add_form_real";
     }
+
     @PostMapping("/save")
     public String saveParking(@ModelAttribute ParkingAddress parkingAddress) {
         parkingService.createParkingPlace(parkingAddress);
@@ -47,18 +48,13 @@ public class ParkingController {
     //-------------    ADD PARKING VIEW *****FINISH --------------//
 
 
-
-
     //-------------    PARKING VIEW LIST   --------------//
     @GetMapping("/list")
     public String listOfParkings(Model model) {
         List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
         model.addAttribute("parkingAddresses", parkingAddresses);
-        return "parking/parkingList";
+        return "parking/parking_list";
     }
-    //-------------    PARKING VIEW LIST   --------------//
-
-
 
     //-------------    PARKING FIND BY PARAMETER   --------------//
     @RequestMapping(value = "/test_param", method = RequestMethod.GET)
@@ -66,6 +62,7 @@ public class ParkingController {
     public String foundAddressByStreetPart(@RequestParam("street") String street) {
         return "" + parkingService.allParkingsByPartStreetName(street);
     }
+
 }
 
 
