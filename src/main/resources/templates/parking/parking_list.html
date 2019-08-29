@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/head :: head"></div>
-<body class="loader-active">
+
+<body onload="startTime()" class="loader-active">
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
 
 <!--== Page Title Area Start ==-->
@@ -11,9 +12,28 @@
             <!-- Page Title Start -->
             <div class="col-lg-12">
                 <div class="section-title  text-center">
-                    <h2>Our Cars</h2>
+                    <h2>Lista parkingów</h2>
                     <span class="title-line"><i class="fa fa-car"></i></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <div id="txt"></div>
+                    <script>
+                        function startTime() {
+                            var today = new Date();
+                            var h = today.getHours();
+                            var m = today.getMinutes();
+                            var s = today.getSeconds();
+                            m = checkTime(m);
+                            s = checkTime(s);
+                            document.getElementById('txt').innerHTML =
+                                h + ":" + m + ":" + s;
+                            var t = setTimeout(startTime, 500);
+                        }
+                        function checkTime(i) {
+                            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                            return i;
+                        }
+                    </script>
+
+
                 </div>
             </div>
             <!-- Page Title End -->
@@ -31,23 +51,6 @@
                 <div class="car-list-content">
                     <div class="row">
 
-                        <!--                            <th:block th:each="parking : ${parkingAddresses}">
-                                <tr>
-                                    <label>Parking name</label><td th:text="${parking.parkingName}"></td>
-                                    <label>street</label><td th:text="${parking.street}"></td>
-                                    <label>street Number</label><td th:text="${parking.streetNumber}"></td>
-                                    <label>Parking is reserved:</label>  <td th:text="${parking.reserved}"></td>
-                                    <label>Description:</label><td th:text="${parking.parkingDescription}"></td>
-                                    <label>Access time</label> <td th:text="${parking.feature_access_time}"></td>
-                                    <label>Access Information</label> <td th:text="${parking.accessInformation}"></td>
-                                    <label>Feature</label> <td th:text="${parking.feature_custom}"></td>
-                                    <label>Max height</label> <td th:text="${parking.maxHeight}"></td>
-                                    <label>Max width</label> <td th:text="${parking.maxWidth}"></td>
-                                    <label>Create time</label> <td th:text="${parking.createdOn}"></td>
-                                </tr> todo do wklejenia
-                            </th:block>-->
-
-
                         <!-- Single Car Start -->
                         <th:block th:each="parking : ${parkingAddresses}">
                             <div class="col-lg-6 col-md-6">
@@ -61,21 +64,21 @@
                                         </div>
                                         <p th:text="${parking.parkingDescription}"></p>
                                         <ul class="car-info-list">
-                                            <li th:text="${'Wysokość: ' + parking.maxWidth+'m'}"></li>
-                                            <li th:text="${'Dostępność: ' + parking.feature_access_time}"></li>
+                                            <li th:text="${'Wys. ' + parking.maxWidth+'m'}"></li>
+                                            <li th:text="${'Szer. ' + parking.maxHeight+'m'}"></li>
+                                            <li th:text="${'Dostęp ' + parking.feature_access_time}"></li>
 
+
+                                        </ul>
+                                        <ul class="car-info-list">
+                                            <li th:text="${'data dodania: ' + parking.createdOn}"></li>
                                             <div th:if="${parking.reserved}">
                                                 <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
                                             </div>
                                             <div th:unless="${parking.reserved}">
                                                 <li style="background-color: green; color: white" th:text="Dostępny"></li>
                                             </div>
-                                        </ul>
-                                        <ul class="car-info-list">
 
-                                            <li th:text="${'Szerokość: ' + parking.maxHeight+'m'}"></li>
-                                            <li>Diesel</li>
-                                            <li>Auto</li>
                                         </ul>
                                         <p class="rating">
                                             <i class="fa fa-star"></i>
@@ -258,6 +261,7 @@
 
 <!--=== Mian Js ===-->
 <script src="assets/js/main.js"></script>
+
 
 </body>
 
