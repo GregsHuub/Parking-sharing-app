@@ -3,8 +3,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:replace="fragments/head :: head"></div>
 <body class="loader-active">
-
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
+
 
 <!--== SlideshowBg Area Start ==-->
 <section id="slideslow-bg">
@@ -24,19 +24,21 @@
                                         <input type="text" th:name="street" th:placeholder="street"/>
                                     </div>
 
-<!--                                    <div class="pick-date bookinput-item">-->
-<!--                                        <span><input type="date" th:name="date" th:placeholder="date" id="startDate2" placeholder="OD"/></span>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="pick-date bookinput-item">-->
+                                    <!--                                        <span><input type="date" th:name="date" th:placeholder="date" id="startDate2" placeholder="OD"/></span>-->
+                                    <!--                                    </div>-->
 
-<!--                                    todo czas zrobic-->
+                                    <!--                                    todo czas zrobic-->
 
-<!--                                    <div class="return-date bookinput-item">-->
-<!--                                        <input id="endDate2" placeholder="DO"/>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="return-date bookinput-item">-->
+                                    <!--                                        <input id="endDate2" placeholder="DO"/>-->
+                                    <!--                                    </div>-->
                                     <p></p>
                                     <div class="car-choose bookinput-item">
                                         <select name="area" id="area" class="custom-select">
-                                            <option value="" th:disabled="disabled" th:selected="selected"> Wybierz rejon</option>
+                                            <option value="" th:disabled="disabled" th:selected="selected"> Wybierz
+                                                rejon
+                                            </option>
                                             <option value="center">Centrum</option>
                                             <option value="krzyki">Krzyki</option>
                                             <option value="dogField">Psie pole</option>
@@ -1071,34 +1073,28 @@
         });
     });
 </script>
-<script th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
-<!--=== Jquery Migrate Min Js ===-->
-<script th:src="@{/assets/js/jquery-migrate.min.js}"></script>
-<!--=== Popper Min Js ===-->
-<script th:src="@{/assets/js/popper.min.js}"></script>
-<!--=== Bootstrap Min Js ===-->
-<script th:src="@{/assets/js/bootstrap.min.js}"></script>
-<!--=== Gijgo Min Js ===-->
-<script th:src="@{/assets/js/plugins/gijgo.js}"></script>
-<!--=== Vegas Min Js ===-->
-<script th:src="@{/assets/js/plugins/vegas.min.js}"></script>
-<!--=== Isotope Min Js ===-->
-<script th:src="@{/assets/js/plugins/isotope.min.js}"></script>
-<!--=== Owl Caousel Min Js ===-->
-<script th:src="@{/assets/js/plugins/owl.carousel.min.js}"></script>
-<!--=== Waypoint Min Js ===-->
-<script th:src="@{/assets/js/plugins/waypoints.min.js}"></script>
-<!--=== CounTotop Min Js ===-->
-<script th:src="@{/assets/js/plugins/counterup.min.js}"></script>
-<!--=== YtPlayer Min Js ===-->
-<script th:src="@{/assets/js/plugins/mb.YTPlayer.js}"></script>
-<!--=== Magnific Popup Min Js ===-->
-<script th:src="@{/assets/js/plugins/magnific-popup.min.js}"></script>
-<!--=== Slicknav Min Js ===-->
-<script th:src="@{/assets/js/plugins/slicknav.min.js}"></script>
 
-<!--=== Mian Js ===-->
-<script th:src="@{/assets/js/main.js}"></script>
+<script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        }
+        ;  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
 
 </body>
 
