@@ -4,60 +4,76 @@
 <body class="loader-active">
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
 
-    <!--== Page Title Area Start ==-->
-    <section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Our Cars</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
+<!--== Page Title Area Start ==-->
+<section id="page-title-area" class="section-padding overlay">
+    <div class="container">
+        <div class="row">
+            <!-- Page Title Start -->
+            <div class="col-lg-12">
+                <div class="section-title  text-center">
+                    <h2>Our Cars</h2>
+                    <span class="title-line"><i class="fa fa-car"></i></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
-                <!-- Page Title End -->
             </div>
+            <!-- Page Title End -->
         </div>
-    </section>
-    <!--== Page Title Area End ==-->
+    </div>
+</section>
+<!--== Page Title Area End ==-->
 
-    <!--== Car List Area Start ==-->
-    <section id="car-list-area" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- Car List Content Start -->
-                <div class="col-lg-12">
-                    <div class="car-list-content">
-                        <div class="row">
+<!--== Car List Area Start ==-->
+<section id="car-list-area" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Car List Content Start -->
+            <div class="col-lg-12">
+                <div class="car-list-content">
+                    <div class="row">
 
-<!--                            <th:block th:each="parking : ${parkingAddresses}">
-        <tr>
-            <label>Parking name</label><td th:text="${parking.parkingName}"></td>
-            <label>street</label><td th:text="${parking.street}"></td>
-            <label>street Number</label><td th:text="${parking.streetNumber}"></td>
-            <label>Parking is reserved:</label>  <td th:text="${parking.reserved}"></td>
-            <label>Description:</label><td th:text="${parking.parkingDescription}"></td>
-            <label>Access time</label> <td th:text="${parking.feature_access_time}"></td>
-            <label>Access Information</label> <td th:text="${parking.accessInformation}"></td>
-            <label>Feature</label> <td th:text="${parking.feature_custom}"></td>
-            <label>Max height</label> <td th:text="${parking.maxHeight}"></td>
-            <label>Max width</label> <td th:text="${parking.maxWidth}"></td>
-            <label>Create time</label> <td th:text="${parking.createdOn}"></td>
-        </tr> todo do wklejenia
-    </th:block>-->
+                        <!--                            <th:block th:each="parking : ${parkingAddresses}">
+                                <tr>
+                                    <label>Parking name</label><td th:text="${parking.parkingName}"></td>
+                                    <label>street</label><td th:text="${parking.street}"></td>
+                                    <label>street Number</label><td th:text="${parking.streetNumber}"></td>
+                                    <label>Parking is reserved:</label>  <td th:text="${parking.reserved}"></td>
+                                    <label>Description:</label><td th:text="${parking.parkingDescription}"></td>
+                                    <label>Access time</label> <td th:text="${parking.feature_access_time}"></td>
+                                    <label>Access Information</label> <td th:text="${parking.accessInformation}"></td>
+                                    <label>Feature</label> <td th:text="${parking.feature_custom}"></td>
+                                    <label>Max height</label> <td th:text="${parking.maxHeight}"></td>
+                                    <label>Max width</label> <td th:text="${parking.maxWidth}"></td>
+                                    <label>Create time</label> <td th:text="${parking.createdOn}"></td>
+                                </tr> todo do wklejenia
+                            </th:block>-->
 
 
-                            <!-- Single Car Start -->
+                        <!-- Single Car Start -->
+                        <th:block th:each="parking : ${parkingAddresses}">
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-car-wrap">
                                     <div class="car-list-thumb car-thumb-1"></div>
                                     <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
-                                        <h5>39$ Rent /per a day koszt koszt</h5>
-                                        <p> tekst</p>
+                                        <h2><a th:href="@{#}" th:text="${parking.parkingName}"></a></h2>
+                                        <div>
+                                            <h5 style="display: inline-block" th:text="${parking.street}"></h5>
+                                            <h5 style="display: inline-block" th:text="${parking.streetNumber}"></h5>
+                                        </div>
+                                        <p th:text="${parking.parkingDescription}"></p>
                                         <ul class="car-info-list">
-                                            <li>AC</li>
+                                            <li th:text="${'Wysokość: ' + parking.maxWidth+'m'}"></li>
+                                            <li th:text="${'Dostępność: ' + parking.feature_access_time}"></li>
+
+                                            <div th:if="${parking.reserved}">
+                                                <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
+                                            </div>
+                                            <div th:unless="${parking.reserved}">
+                                                <li style="background-color: green; color: white" th:text="Dostępny"></li>
+                                            </div>
+                                        </ul>
+                                        <ul class="car-info-list">
+
+                                            <li th:text="${'Szerokość: ' + parking.maxHeight+'m'}"></li>
                                             <li>Diesel</li>
                                             <li>Auto</li>
                                         </ul>
@@ -68,199 +84,180 @@
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star unmark"></i>
                                         </p>
-                                        <a href="#" class="rent-btn">Book It</a>
+                                        <a th:href="@{#}" class="rent-btn">Wynajmij</a>
                                     </div>
                                 </div>
                             </div>
                             <!-- Single Car End -->
+                        </th:block>
 
-                            <!-- Single Car Start -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-2"></div>
-                                    <div class="car-list-info without-bar">
-                                        <h2><a href="#">Aston Martin One-77</a></h2>
-                                        <h5>39$ Rent /per a day</h5>
-                                        <p>Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean inorci luctus et ultrices posuere cubilia.</p>
-                                        <ul class="car-info-list">
-                                            <li>AC</li>
-                                            <li>Diesel</li>
-                                            <li>Auto</li>
-                                        </ul>
-                                        <p class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
-                                        </p>
-                                        <a href="#" class="rent-btn">Book It</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Car End -->v>
-
-                        </div>
-                    </div>
-
-                    <!-- Page Pagination Start -->
-                    <div class="page-pagi">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- Page Pagination End -->
-                </div>
-                <!-- Car List Content End -->
-            </div>
-        </div>
-    </section>
-    <!--== Car List Area End ==-->
-
-    <!--== Footer Area Start ==-->
-    <section id="footer-area">
-        <!-- Footer Widget Start -->
-        <div class="footer-widget-area">
-            <div class="container">
-                <div class="row">
-                    <!-- Single Footer Widget Start -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h2>About Us</h2>
-                            <div class="widget-body">
-                                <img src="assets/img/logo.png" alt="JSOFT">
-                                <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
-
-                                <div class="newsletter-area">
-                                    <form action="index.html">
-                                        <input type="email" placeholder="Subscribe Our Newsletter">
-                                        <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Footer Widget End -->
-
-                    <!-- Single Footer Widget Start -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h2>Recent Posts</h2>
-                            <div class="widget-body">
-                                <ul class="recent-post">
-                                    <li>
-                                        <a href="#">
-                                           Hello Bangladesh! 
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                          Lorem ipsum dolor sit amet
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           Hello Bangladesh! 
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            consectetur adipisicing elit?
-                                           <i class="fa fa-long-arrow-right"></i>
-                                       </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Footer Widget End -->
-
-                    <!-- Single Footer Widget Start -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h2>get touch</h2>
-                            <div class="widget-body">
-                                <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
-
-                                <ul class="get-touch">
-                                    <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
-                                    <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
-                                    <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
-                                </ul>
-                                <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Footer Widget End -->
-                </div>
-            </div>
-        </div>
-        <!-- Footer Widget End -->
-
-        <!-- Footer Bottom Start -->
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Footer Bottom End -->
-    </section>
-    <!--== Footer Area End ==-->
 
-    <!--== Scroll Top Area Start ==-->
-    <div class="scroll-top">
-        <img src="assets/img/scroll-top.png" alt="JSOFT">
+                <!-- Page Pagination Start -->
+                <div class="page-pagi">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Page Pagination End -->
+            </div>
+            <!-- Car List Content End -->
+        </div>
     </div>
-    <!--== Scroll Top Area End ==-->
+</section>
+<!--== Car List Area End ==-->
 
-    <!--=======================Javascript============================-->
-    <!--=== Jquery Min Js ===-->
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <!--=== Jquery Migrate Min Js ===-->
-    <script src="assets/js/jquery-migrate.min.js"></script>
-    <!--=== Popper Min Js ===-->
-    <script src="assets/js/popper.min.js"></script>
-    <!--=== Bootstrap Min Js ===-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--=== Gijgo Min Js ===-->
-    <script src="assets/js/plugins/gijgo.js"></script>
-    <!--=== Vegas Min Js ===-->
-    <script src="assets/js/plugins/vegas.min.js"></script>
-    <!--=== Isotope Min Js ===-->
-    <script src="assets/js/plugins/isotope.min.js"></script>
-    <!--=== Owl Caousel Min Js ===-->
-    <script src="assets/js/plugins/owl.carousel.min.js"></script>
-    <!--=== Waypoint Min Js ===-->
-    <script src="assets/js/plugins/waypoints.min.js"></script>
-    <!--=== CounTotop Min Js ===-->
-    <script src="assets/js/plugins/counterup.min.js"></script>
-    <!--=== YtPlayer Min Js ===-->
-    <script src="assets/js/plugins/mb.YTPlayer.js"></script>
-    <!--=== Magnific Popup Min Js ===-->
-    <script src="assets/js/plugins/magnific-popup.min.js"></script>
-    <!--=== Slicknav Min Js ===-->
-    <script src="assets/js/plugins/slicknav.min.js"></script>
+<!--== Footer Area Start ==-->
+<section id="footer-area">
+    <!-- Footer Widget Start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="row">
+                <!-- Single Footer Widget Start -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer-widget">
+                        <h2>About Us</h2>
+                        <div class="widget-body">
+                            <img src="assets/img/logo.png" alt="JSOFT">
+                            <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda
+                                distinctio debitis, eum fuga fugiat error reiciendis.</p>
 
-    <!--=== Mian Js ===-->
-    <script src="assets/js/main.js"></script>
+                            <div class="newsletter-area">
+                                <form action="index.html">
+                                    <input type="email" placeholder="Subscribe Our Newsletter">
+                                    <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Footer Widget End -->
+
+                <!-- Single Footer Widget Start -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer-widget">
+                        <h2>Recent Posts</h2>
+                        <div class="widget-body">
+                            <ul class="recent-post">
+                                <li>
+                                    <a href="#">
+                                        Hello Bangladesh!
+                                        <i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Lorem ipsum dolor sit amet
+                                        <i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Hello Bangladesh!
+                                        <i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        consectetur adipisicing elit?
+                                        <i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Footer Widget End -->
+
+                <!-- Single Footer Widget Start -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer-widget">
+                        <h2>get touch</h2>
+                        <div class="widget-body">
+                            <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque
+                                sed</p>
+
+                            <ul class="get-touch">
+                                <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
+                                <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
+                                <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+                            </ul>
+                            <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show
+                                Location</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Footer Widget End -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer Widget End -->
+
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                            aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom End -->
+</section>
+<!--== Footer Area End ==-->
+
+<!--== Scroll Top Area Start ==-->
+<div class="scroll-top">
+    <img src="assets/img/scroll-top.png" alt="JSOFT">
+</div>
+<!--== Scroll Top Area End ==-->
+
+<!--=======================Javascript============================-->
+<!--=== Jquery Min Js ===-->
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<!--=== Jquery Migrate Min Js ===-->
+<script src="assets/js/jquery-migrate.min.js"></script>
+<!--=== Popper Min Js ===-->
+<script src="assets/js/popper.min.js"></script>
+<!--=== Bootstrap Min Js ===-->
+<script src="assets/js/bootstrap.min.js"></script>
+<!--=== Gijgo Min Js ===-->
+<script src="assets/js/plugins/gijgo.js"></script>
+<!--=== Vegas Min Js ===-->
+<script src="assets/js/plugins/vegas.min.js"></script>
+<!--=== Isotope Min Js ===-->
+<script src="assets/js/plugins/isotope.min.js"></script>
+<!--=== Owl Caousel Min Js ===-->
+<script src="assets/js/plugins/owl.carousel.min.js"></script>
+<!--=== Waypoint Min Js ===-->
+<script src="assets/js/plugins/waypoints.min.js"></script>
+<!--=== CounTotop Min Js ===-->
+<script src="assets/js/plugins/counterup.min.js"></script>
+<!--=== YtPlayer Min Js ===-->
+<script src="assets/js/plugins/mb.YTPlayer.js"></script>
+<!--=== Magnific Popup Min Js ===-->
+<script src="assets/js/plugins/magnific-popup.min.js"></script>
+<!--=== Slicknav Min Js ===-->
+<script src="assets/js/plugins/slicknav.min.js"></script>
+
+<!--=== Mian Js ===-->
+<script src="assets/js/main.js"></script>
 
 </body>
 
