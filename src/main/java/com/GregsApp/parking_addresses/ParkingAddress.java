@@ -29,13 +29,9 @@ public class ParkingAddress {
     private LocalDateTime createdOn;
     private boolean reserved; // default false;
     private String accessInformation;
-
-    private String fileName;
-    private String fileType;
     @Lob
     private byte[] data;
-
-
+    private String fileName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,38 +40,11 @@ public class ParkingAddress {
     @JoinColumn(name = "park_avability_id")
     private ParkingAvailability parkingAvailability;
 
-
-
-
     @PrePersist
     public void prePersist() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
         // to zastosowac potem
         createdOn = LocalDateTime.now().withNano(0).withSecond(0);
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
     }
 
     public Long getId() {
@@ -150,14 +119,6 @@ public class ParkingAddress {
         this.feature_custom = feature_custom;
     }
 
-    public String getAccessInformation() {
-        return accessInformation;
-    }
-
-    public void setAccessInformation(String accessInformation) {
-        this.accessInformation = accessInformation;
-    }
-
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
@@ -172,6 +133,46 @@ public class ParkingAddress {
 
     public void setReserved(boolean reserved) {
         this.reserved = reserved;
+    }
+
+    public String getAccessInformation() {
+        return accessInformation;
+    }
+
+    public void setAccessInformation(String accessInformation) {
+        this.accessInformation = accessInformation;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ParkingAvailability getParkingAvailability() {
+        return parkingAvailability;
+    }
+
+    public void setParkingAvailability(ParkingAvailability parkingAvailability) {
+        this.parkingAvailability = parkingAvailability;
     }
 
     @Override
@@ -189,24 +190,9 @@ public class ParkingAddress {
                 ", createdOn=" + createdOn +
                 ", reserved=" + reserved +
                 ", accessInformation='" + accessInformation + '\'' +
+                ", fileName='" + fileName + '\'' +
                 ", user=" + user +
                 ", parkingAvailability=" + parkingAvailability +
                 '}';
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public ParkingAvailability getParkingAvailability() {
-        return parkingAvailability;
-    }
-
-    public void setParkingAvailability(ParkingAvailability parkingAvailability) {
-        this.parkingAvailability = parkingAvailability;
     }
 }

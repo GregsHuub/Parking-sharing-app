@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-lg-10 m-auto">
                 <div class="contact-form">
-                    <form action="#" th:action="@{/parking/save}" th:object="${parkingAddress}" method="post">
+                    <form action="#" th:action="@{/parking/save}" th:object="${parkingAddress}" enctype="multipart/form-data" method="post">
                         <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">
 
                         <div class="row">
@@ -101,7 +101,7 @@
                         <br>
                         <div id="image-input">
                             <label>Wstaw zdjęcie parkingu </label>
-                            <input type="file" name="file" accept="image/*" placeholder="Dodaj obraz">
+                            <input type="file" name="file"  placeholder="Dodaj obraz" multiple>
                         </div>
                         <div class="message-input">
                             <textarea name="review" cols="30" rows="5" th:field="*{parkingDescription}"
@@ -130,7 +130,7 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d160255.7009239501!2d16.851780725281717!3d51.1269942279634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c2d4b58abf%3A0xb70956aec205e0f5!2zV3JvY8WCYXc!5e0!3m2!1spl!2spl!4v1566485525497!5m2!1spl!2spl"></iframe>
 </div>
 <!--== Map Area End ==-->
-<div th:replace="fragments/footer :: footertest"></div>
+<div th:replace="fragments/footer :: footer"></div>
 
 
 </body>

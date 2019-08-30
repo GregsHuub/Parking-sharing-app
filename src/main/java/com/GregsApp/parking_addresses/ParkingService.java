@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -24,9 +25,6 @@ public class ParkingService {
         this.userRepository = userRepository;
     }
 
-    public void createParkingPlace(ParkingAddress parkingAddress) {
-        parkingRepository.save(parkingAddress);
-    }
 
     public void updateParkingPlace(ParkingAddress parkingAddress) {
         ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
@@ -58,20 +56,12 @@ public class ParkingService {
         return parkingRepository.findAllByStreetContaining(streetLetters);
     }
 
-//    IMAGE     //
-public ParkingAddress storeFile(MultipartFile file, ParkingAddress parkingAddress) {
-    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    //    IMAGE     //
+    public void createParkingPlace(ParkingAddress parkingAddress) {
 
-    try {
-        if (fileName.contains("..")) {
-            throw new FileStorageException("Nazwa zawiera nieprawidłową ścieżkę: " + fileName);
-        }
-
-        ParkingAddress oneById = parkingRepository.findOneById(parkingAddress.getId());
-        return parkingRepository.save(oneById);
-    } catch (FileStorageException fse) {
-        throw new FileStorageException("Nie udało się zapisać pliku " + fileName + ". Spróbuj ponownie", fse);
+        parkingRepository.save(parkingAddress);
     }
-}
+
+
 
 }

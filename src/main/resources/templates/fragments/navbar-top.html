@@ -84,6 +84,10 @@
                         <div class="col-lg-8 d-none d-xl-block">
                             <nav class="mainmenu alignright">
                                 <ul>
+                                    <span sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <li class="active"><a th:href="@{/main}">PANEL ADMINA</a>
+                                        </span>
+
                                     <li class="active"><a th:href="@{/main}">Home</a>
 
                                     </li>
@@ -112,6 +116,9 @@
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">Contact</a></li>
+                                    <span sec:authorize="hasRole('ROLE_USER')">
+                                    <li class="active"><a th:href="@{/main}">Twoje konto</a>
+                                        </span>
                                 </ul>
                             </nav>
                         </div>
