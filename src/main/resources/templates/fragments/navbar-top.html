@@ -18,10 +18,10 @@
                     <div class="row">
                         <!--== Single HeaderTop Start ==-->
                         <div class="col-lg-3 text-left">
-                            <i class="fa fa-map-marker"></i> Polska, Wrocław,
-                            -<script>document.write(new Date().getDate());</script>
-                            0<script>document.write(new Date().getMonth());</script>
-                            -<script>document.write(new Date().getFullYear());</script>
+                            <i class="fa fa-map-marker"></i> Polska, Wrocław
+                            <!--                            -<script>document.write(new Date().getDate());</script>-->
+                            <!--                            0<script>document.write(new Date().getMonth());</script>-->
+                            <!--                            -<script>document.write(new Date().getFullYear());</script>-->
                         </div>
                         <!--== Single HeaderTop End ==-->
 
@@ -41,10 +41,10 @@
                         <div class="col-lg-3 text-center">
                             <i class="fa fa-money"></i>
                             <span th:text="${'€' +nbp_eur+ '|'}"></span>
-                                <span th:text="${'$' +nbp_usd+ '|'}">
+                            <span th:text="${'$' +nbp_usd+ '|'}">
 
                                 </span>
-                                <span th:text="${'£' +nbp_gbp}">
+                            <span th:text="${'£' +nbp_gbp}">
 
                                 </span>
                         </div>
@@ -56,8 +56,12 @@
                             <div class="header-social-icons">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <span sec:authorize="isAuthenticated()">
                                 <a th:href="@{/user/logout}"><i class="fa fa-sign-out"></i>Sign-out</a>
-
+                                    </span>
+                                <span sec:authorize="isAnonymous()">
+                                <a th:href="@{/user/login}"><i class="fa fa-sign-in"></i>Sign-in</a>
+                            </span>
 
                             </div>
                         </div>
