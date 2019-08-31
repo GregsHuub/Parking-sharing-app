@@ -44,10 +44,11 @@ public class ParkingController {
 
     @PostMapping("/save")
     @ResponseBody
-    public String saveParking(@ModelAttribute ParkingAddress parkingAddress, @RequestParam ("file") MultipartFile file) {
+    public String saveParking(@ModelAttribute ParkingAddress parkingAddress, @RequestParam ("imageFile") MultipartFile imageFile) throws IOException {
 
-        parkingService.createParkingPlace(parkingAddress);
-        return "redirect:/parking/list";
+        parkingService.createParkingPlace(parkingAddress, imageFile);
+        return "udalo sie'";
+//        return "redirect:/parking/list";
     }
     //-------------    ADD PARKING VIEW *****FINISH --------------//
 
@@ -56,6 +57,7 @@ public class ParkingController {
     @GetMapping("/list")
     public String listOfParkings(Model model) {
         List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
+
         model.addAttribute("parkingAddresses", parkingAddresses);
         return "parking/parking_list";
     }

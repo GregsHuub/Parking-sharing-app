@@ -29,9 +29,8 @@ public class ParkingAddress {
     private LocalDateTime createdOn;
     private boolean reserved; // default false;
     private String accessInformation;
-    @Lob
-    private byte[] data;
     private String fileName;
+    private String path;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
@@ -45,6 +44,10 @@ public class ParkingAddress {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
         // to zastosowac potem
         createdOn = LocalDateTime.now().withNano(0).withSecond(0);
+    }
+
+
+    public ParkingAddress() {
     }
 
     public Long getId() {
@@ -143,22 +146,6 @@ public class ParkingAddress {
         this.accessInformation = accessInformation;
     }
 
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public User getUser() {
         return user;
     }
@@ -190,9 +177,24 @@ public class ParkingAddress {
                 ", createdOn=" + createdOn +
                 ", reserved=" + reserved +
                 ", accessInformation='" + accessInformation + '\'' +
-                ", fileName='" + fileName + '\'' +
                 ", user=" + user +
                 ", parkingAvailability=" + parkingAvailability +
                 '}';
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

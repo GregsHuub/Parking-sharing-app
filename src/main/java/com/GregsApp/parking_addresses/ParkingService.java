@@ -9,6 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -56,12 +61,16 @@ public class ParkingService {
         return parkingRepository.findAllByStreetContaining(streetLetters);
     }
 
-    //    IMAGE     //
-    public void createParkingPlace(ParkingAddress parkingAddress) {
+    public void createParkingPlace(ParkingAddress parkingAddress, MultipartFile imageFile) throws IOException {
+        Path currentPath = Paths.get(".");
+        Path absolutePath = currentPath.toAbsolutePath();
+        parkingAddress.setPath(absolutePath + "/src/main/resources/static/uploadPhotos/");
+        byte[] bytes = imageFile.getBytes();
+        Path path = Paths.get(parkingAddress.getPath() + imageFile.getOriginalFilename());
+        Files.write(path, bytes);
 
         parkingRepository.save(parkingAddress);
     }
-
 
 
 }
