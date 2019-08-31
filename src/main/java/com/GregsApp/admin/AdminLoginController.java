@@ -21,7 +21,7 @@ public class AdminLoginController {
     public String adminLoginForm(){
         return "admin/admin_login";
     }
-    @GetMapping("/register")
+    @GetMapping("/register.pl")
     public String adminRegisterForm(Model model){
         model.addAttribute("admin", new UserDto());
         return "admin/admin_register";

@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/")
     public String mainPage(){
-        return "index2";
+        return "main_page";
     }
     @GetMapping("/about")
     public String aboutPage(){

@@ -24,27 +24,27 @@ public class UserController {
     @GetMapping("/list")
     public String getListOfUsers(Model model) {
         model.addAttribute("listOfUsers", userService.getList());
-        return "userList";
+        return "user/userList";
     }
 
     // ----------------- LOGIN ------------------
     @GetMapping("/login")
     public String loginForm() {
         ;
-        return "login";
+        return "user/login";
     }
 
 
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new UserDto());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/signUp/save")
     public String signUpSave(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "user/register";
         }
         userService.createUser(userDto);
         return "redirect:/";

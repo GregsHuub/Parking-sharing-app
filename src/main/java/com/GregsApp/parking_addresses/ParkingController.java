@@ -39,7 +39,7 @@ public class ParkingController {
     @GetMapping("/add_form")
     public String addParkingForm(Model model, @ModelAttribute("currentUser") User user) {
         model.addAttribute("parkingAddress", new ParkingAddress());
-        return "parking/parking_add_form_real";
+        return "parking_add_form";
     }
 
     @PostMapping("/save")

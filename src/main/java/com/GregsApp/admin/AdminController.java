@@ -26,17 +26,6 @@ public class AdminController {
 
     }
 
-    @GetMapping("/createAccount")
-    public String createAccount(Model model){
-        model.addAttribute("admin", new UserDto());
-        return "admin/admin_create_form";
-    }
-    @PostMapping("/saveAccount")
-    @ResponseBody
-    public String saveAccount(@ModelAttribute UserDto userDto){
-        userService.createUser(userDto);
-        return "account create properly and added to DataBase ";
-    }
 
     @ModelAttribute
     public void addresList(Model model){

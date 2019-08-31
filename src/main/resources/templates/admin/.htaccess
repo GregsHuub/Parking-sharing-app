@@ -1,0 +1,2 @@
+ AuthUserFile /home/greghp/Pulpit/Parking-Sharing/src/main/resources/templates/admin/.htpasswd
+AuthName "/home/greghp/Pulpit/Parking-Sharing/src/main/resources/templates/admin/admin_register.html" AuthType Basic  require valid-user
