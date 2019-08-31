@@ -1,5 +1,7 @@
 package com.GregsApp.reservation;
 
+import com.GregsApp.parking_addresses.ParkingAddress;
+import com.GregsApp.parking_addresses.ParkingRepository;
 import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ public class ReservationService {
 
     private ReservationRepository reservationRepository;
     private UserRepository userRepository;
+    private ParkingRepository parkingRepository;
 
     @Autowired
     public ReservationService(ReservationRepository reservationRepository, UserRepository userRepository) {
@@ -20,14 +23,16 @@ public class ReservationService {
         this.userRepository = userRepository;
     }
 
-    public void createReservation() {
-        Reservation reservation = new Reservation();
+    public void createReservation(Reservation reservation, ParkingAddress parkingAddress, User user) {
+        reservation.setParkingAddress(parkingAddress);
+        reservation.setUser(user);
         reservationRepository.save(reservation);
     }
 
-    public void createReservationDTO(ReservationCreateDto reservationCreateDto, User userId) {
+    public void createReservationDTO(ReservationCreateDto reservationCreateDto, User userId, ParkingAddress parkingAddress) {
 
         User userById = userRepository.findOneById(userId.getId());
+//        ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
 
         Reservation reservation = new Reservation();
         reservation.setCreatedOn(reservationCreateDto.getCreatedOn());
@@ -57,5 +62,13 @@ public class ReservationService {
         reservation.setTimeFrom(reservationCreateDto.getTimeFrom());
         reservation.setTimeTo(reservationCreateDto.getTimeTo());
         reservation.setTotalPrice(reservationCreateDto.getTotalPrice());
+    }
+
+    public ParkingRepository getParkingRepository() {
+        return parkingRepository;
+    }
+
+    public void setParkingRepository(ParkingRepository parkingRepository) {
+        this.parkingRepository = parkingRepository;
     }
 }

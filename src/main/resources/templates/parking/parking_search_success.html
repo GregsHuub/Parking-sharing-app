@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+<body  class="loader-active">
+<div th:replace="fragments/navbar-top :: navbar-top"></div>
+
+<!--== Page Title Area Start ==-->
+<section id="page-title-area" class="section-padding overlay">
+    <div class="container">
+        <div class="row">
+            <!-- Page Title Start -->
+            <div class="col-lg-12">
+                <div class="section-title  text-center">
+                    <h2>Lista parkingów</h2>
+                    <span class="title-line"><i class="fa fa-car"></i></span>
+
+                </div>
+            </div>
+            <!-- Page Title End -->
+        </div>
+    </div>
+</section>
+<!--== Page Title Area End ==-->
+
+<!--== Car List Area Start ==-->
+<section id="car-list-area" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Car List Content Start -->
+            <div class="col-lg-12">
+                <div class="car-list-content">
+                    <div class="row">
+
+                        <!-- Single Car Start -->
+                        <th:block th:each="parking : ${byStreet}">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single-car-wrap">
+                                    <img class="car-list-thumb" th:if="${parking.fileName != null}" th:src="@{${'/uploadPhotos/' + parking.fileName}}" alt="User parking photo">
+                                    <img class="car-list-thumb" th:unless="${parking.fileName != null}" th:src="@{/uploadPhotos/default_parking.jpg}" alt="User parking photo">
+                                    <div class="car-list-info without-bar">
+
+                                        <h2><a th:href="@{#}" th:text="${'Nazwa parkingu - ' +parking.parkingName}"></a></h2>
+                                        <div>
+                                            <h5 style="display: inline-block" th:text="${'ulica - '+parking.street+','}"></h5>
+                                            <h5 style="display: inline-block" th:text="${parking.streetNumber}"></h5>
+                                        </div>
+                                        <h6>Opis:</h6>
+                                        <p th:text="${parking.parkingDescription}"></p>
+                                        <ul class="car-info-list">
+                                            <li th:text="${'Wys. ' + parking.maxWidth+'m'}"></li>
+                                            <li th:text="${'Szer. ' + parking.maxHeight+'m'}"></li>
+                                            <li th:text="${'Dostęp ' + parking.feature_access_time}"></li>
+
+
+                                        </ul>
+                                        <ul class="car-info-list">
+                                            <li th:text="${'data dodania: ' + parking.createdOn}"></li>
+                                            <div th:if="${parking.reserved}">
+                                                <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
+                                            </div>
+                                            <div th:unless="${parking.reserved}">
+                                                <li style="background-color: green; color: white" th:text="Dostępny"></li>
+                                            </div>
+
+                                        </ul>
+                                        <p class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star unmark"></i>
+                                        </p>
+                                        <span th:if="${parking.reserved}">
+                                            <span style="background-color: grey" class="rent-btn">Wynajmij</span>
+                                            </span>
+                                        <span th:unless="${parking.reserved}">
+                                            <a th:href="@{#}" class="rent-btn">Wynajmij</a>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Car End -->
+                        </th:block>
+
+                    </div>
+                </div>
+
+                <!-- Page Pagination Start -->
+                <div class="page-pagi">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Poprzednia</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Następna</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Page Pagination End -->
+            </div>
+            <!-- Car List Content End -->
+        </div>
+    </div>
+</section>
+<!--== Car List Area End ==-->
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

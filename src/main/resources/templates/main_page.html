@@ -19,20 +19,10 @@
                             <br>
                             <p>Mozesz wyszukac parking po wpisaniu <b>ulicy</b> lub rejonu np. <b>centrum</b></p>
                             <div class="book-ur-car">
-                                <form th:action="@{/parking/test_param}" method="get">
+                                <form th:action="@{/parking/list/search}" method="get">
                                     <div style="border: white 1px solid">
                                         <input type="text" th:name="street" th:placeholder="street"/>
                                     </div>
-
-                                    <!--                                    <div class="pick-date bookinput-item">-->
-                                    <!--                                        <span><input type="date" th:name="date" th:placeholder="date" id="startDate2" placeholder="OD"/></span>-->
-                                    <!--                                    </div>-->
-
-                                    <!--                                    todo czas zrobic-->
-
-                                    <!--                                    <div class="return-date bookinput-item">-->
-                                    <!--                                        <input id="endDate2" placeholder="DO"/>-->
-                                    <!--                                    </div>-->
                                     <p></p>
                                     <div class="car-choose bookinput-item">
                                         <select name="area" id="area" class="custom-select">
