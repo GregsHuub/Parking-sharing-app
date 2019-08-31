@@ -65,6 +65,7 @@ public class ParkingService {
         Path currentPath = Paths.get(".");
         Path absolutePath = currentPath.toAbsolutePath();
         parkingAddress.setPath(absolutePath + "/src/main/resources/static/uploadPhotos/");
+        parkingAddress.setFileName(imageFile.getOriginalFilename());
         byte[] bytes = imageFile.getBytes();
         Path path = Paths.get(parkingAddress.getPath() + imageFile.getOriginalFilename());
         Files.write(path, bytes);

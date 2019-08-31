@@ -36,9 +36,10 @@
                         <th:block th:each="parking : ${parkingAddresses}">
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-car-wrap">
-                                    <div class="car-list-thumb car-thumb-1"></div>
-                                    <div th:style="'background-image:url('+ ${parking.data}+');'"></div>
+                                    <img class="car-list-thumb" th:if="${parking.fileName != null}" th:src="@{${'/uploadPhotos/' + parking.fileName}}" alt="User parking photo">
+                                    <img class="car-list-thumb" th:unless="${parking.fileName != null}" th:src="@{/uploadPhotos/default_parking.jpg}" alt="User parking photo">
                                     <div class="car-list-info without-bar">
+
                                         <h2><a th:href="@{#}" th:text="${'Nazwa parkingu - ' +parking.parkingName}"></a></h2>
                                         <div>
                                             <h5 style="display: inline-block" th:text="${'ulica - '+parking.street+','}"></h5>

@@ -43,12 +43,9 @@ public class ParkingController {
     }
 
     @PostMapping("/save")
-    @ResponseBody
     public String saveParking(@ModelAttribute ParkingAddress parkingAddress, @RequestParam ("imageFile") MultipartFile imageFile) throws IOException {
-
         parkingService.createParkingPlace(parkingAddress, imageFile);
-        return "udalo sie'";
-//        return "redirect:/parking/list";
+        return "redirect:/parking/list";
     }
     //-------------    ADD PARKING VIEW *****FINISH --------------//
 
