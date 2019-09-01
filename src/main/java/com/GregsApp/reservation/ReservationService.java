@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -26,6 +27,7 @@ public class ReservationService {
     public void createReservation(Reservation reservation, ParkingAddress parkingAddress, User user) {
         reservation.setParkingAddress(parkingAddress);
         reservation.setUser(user);
+        reservation.setCreatedOn(LocalDateTime.now());
         reservationRepository.save(reservation);
     }
 

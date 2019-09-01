@@ -28,32 +28,32 @@ public class ReservationController {
 
     @GetMapping("/details")
     public String reservationDetailsForm(Model model,
-//                                         @ModelAttribute("currentUser") User user,
+                                         @ModelAttribute("currentUser") User user,
                                          @RequestParam Long id) {
         ParkingAddress byId = parkingService.parkingById(id);
         model.addAttribute("parking", byId);
-//        model.addAttribute("reservation", new Reservation());
+        model.addAttribute("reservation", new Reservation());
         return "reservation/details_form";
     }
 
     @PostMapping("/details/save")
     public String reservationSave(Model model,
                                   @ModelAttribute("currentUser") User user,
+                                  @ModelAttribute Reservation reservation,
                                   @RequestParam Long id) {
-        // TODO: 01.09.2019 Z USEREM JEST PROBLEM 
+        // TODO: 01.09.2019 Z USEREM JEST PROBLEM
         ParkingAddress byId = parkingService.parkingById(id);
+        byId.setReserved(true);
         model.addAttribute("parking", byId);
-        Reservation newReservation = new Reservation();
-        newReservation.setCreatedOn(LocalDateTime.now());
-        newReservation.setMinDurationTime(300);
-        reservationService.createReservation(newReservation, byId, user);
+        reservation.setMinDurationTime(300);
+        reservationService.createReservation(reservation, byId, user);
         return "redirect:/reservation/details/save/confirmation";
     }
 
 //    CONFIRMATION REDIRECTIONS *******************   //
     @GetMapping("/details/save/confirmation")
     public String redirectConfirmation() {
-        return "reditect:/reservation/success";
+        return "redirect:/reservation/success";
     }
 
     @GetMapping("/success")

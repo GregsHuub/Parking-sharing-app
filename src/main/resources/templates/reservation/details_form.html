@@ -31,6 +31,7 @@
                 <div class="col-lg-8">
                     <div class="car-details-content">
                         <h2 th:text="${parking.street}"></h2>
+                        <h2 th:text="${parking.id}"></h2>
                         <div class="car-preview-crousel">
                             <div class="single-car-preview">
                                 <img src="../../static/assets/img/car/car-5.jpg" alt="JSOFT">
@@ -44,10 +45,15 @@
                         </div>
                         <div class="car-details-info">
                             <h4>Additional Info</h4>
-                            <form th:action="@{'/reservation/details/save?id=' + ${parking.id}}" method="post">
+
+                            <form th:action="@{'/reservation/details/save?id=' + ${parking.id}}" method="post" th:object="${reservation}">
+                                <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">
+<!--                                <input type="hidden" th:name="parkingAddress" th:id="parkingAddress" th:value="${parking.id}">-->
+
                             <p>The Aventador LPER 720-4 50° ise a limited (200 units – 100 Coupe and 100 Roadster) versione of thed Aventadored LP 700-4 commemorating the 50th anniversary of Lamborghini. It included ised increased engine power to 720 PS (530 kW; 710 bhp) via a new specific engine calibration, enlarged and extended front air intakes and the aerodynamic splitter.</p>
                             <button type="submit" class="rent-btn">Wynajmij</button>
                             </form>
+
                             <div class="technical-info">
                                 <div class="row">
                                     <div class="col-lg-6">
