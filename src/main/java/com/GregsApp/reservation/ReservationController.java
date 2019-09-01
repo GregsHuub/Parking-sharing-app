@@ -3,13 +3,14 @@ package com.GregsApp.reservation;
 
 import com.GregsApp.parking_addresses.ParkingAddress;
 import com.GregsApp.parking_addresses.ParkingService;
+import com.GregsApp.security.CurrentUser;
 import com.GregsApp.user.User;
-import com.restfb.json.JsonObject;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 
 @Controller
@@ -27,12 +28,38 @@ public class ReservationController {
 
     @GetMapping("/details")
     public String reservationDetailsForm(Model model,
-                                         @ModelAttribute("currentUser") User user,
-                                         @RequestParam Long id){
+//                                         @ModelAttribute("currentUser") User user,
+                                         @RequestParam Long id) {
         ParkingAddress byId = parkingService.parkingById(id);
         model.addAttribute("parking", byId);
-        model.addAttribute("reservation", new Reservation());
+//        model.addAttribute("reservation", new Reservation());
         return "reservation/details_form";
+    }
+
+    @PostMapping("/details/save")
+    public String reservationSave(Model model,
+                                  @ModelAttribute("currentUser") User user,
+                                  @RequestParam Long id) {
+        // TODO: 01.09.2019 Z USEREM JEST PROBLEM 
+        ParkingAddress byId = parkingService.parkingById(id);
+        model.addAttribute("parking", byId);
+        Reservation newReservation = new Reservation();
+        newReservation.setCreatedOn(LocalDateTime.now());
+        newReservation.setMinDurationTime(300);
+        reservationService.createReservation(newReservation, byId, user);
+        return "redirect:/reservation/details/save/confirmation";
+    }
+
+//    CONFIRMATION REDIRECTIONS *******************   //
+    @GetMapping("/details/save/confirmation")
+    public String redirectConfirmation() {
+        return "reditect:/reservation/success";
+    }
+
+    @GetMapping("/success")
+    @ResponseBody
+    public String reservationRedirectSuccess(@ModelAttribute("currentUser") User user) {
+        return "użytkowniku: " + user.getEmail() + " zapisano w bazie danych twoja rezerwacje";
     }
 
 
