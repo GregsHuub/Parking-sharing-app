@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/resources/**",
                         "/static/**",
+                        "/uploadPhotos/**",
                         "/css/**",
                         "/js/**",
                         "/images/**",
