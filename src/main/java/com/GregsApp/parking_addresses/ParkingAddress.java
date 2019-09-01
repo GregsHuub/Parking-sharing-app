@@ -1,6 +1,5 @@
 package com.GregsApp.parking_addresses;
 
-import com.GregsApp.parkingAvalibility.ParkingAvailability;
 import com.GregsApp.user.User;
 
 import javax.persistence.*;
@@ -35,9 +34,7 @@ public class ParkingAddress {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "park_avability_id")
-    private ParkingAvailability parkingAvailability;
+
 
     @PrePersist
     public void prePersist() {
@@ -154,12 +151,20 @@ public class ParkingAddress {
         this.user = user;
     }
 
-    public ParkingAvailability getParkingAvailability() {
-        return parkingAvailability;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setParkingAvailability(ParkingAvailability parkingAvailability) {
-        this.parkingAvailability = parkingAvailability;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Override
@@ -177,24 +182,9 @@ public class ParkingAddress {
                 ", createdOn=" + createdOn +
                 ", reserved=" + reserved +
                 ", accessInformation='" + accessInformation + '\'' +
-                ", user=" + user +
-                ", parkingAvailability=" + parkingAvailability +
+                ", fileName='" + fileName + '\'' +
+                ", path='" + path + '\'' +
+                ", user=" + user.getId() +
                 '}';
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 }

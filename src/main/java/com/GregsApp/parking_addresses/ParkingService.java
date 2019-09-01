@@ -40,6 +40,10 @@ public class ParkingService {
         ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
         parkingRepository.save(parkingById);
     }
+    public ParkingAddress parkingById(Long id){
+        return parkingRepository.findOneById(id);
+
+    }
 
     public List<ParkingAddress> allParkingPlaces() {
         return parkingRepository.findAll();

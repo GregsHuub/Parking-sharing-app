@@ -1,8 +1,6 @@
 package com.GregsApp.parking_addresses;
 
 import com.GregsApp.nbpCurrencyApi.CurrencyJsonParsingService;
-import com.GregsApp.parkingAvalibility.ParkingAvailabilityService;
-import com.GregsApp.reservation.Reservation;
 import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +20,13 @@ public class ParkingController {
     private ParkingRepository parkingRepository;
     private CurrencyJsonParsingService currencyJsonParsingService;
     private UserRepository userRepository;
-    private ParkingAvailabilityService availabilityService;
 
     @Autowired
-    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository, CurrencyJsonParsingService currencyJsonParsingService, UserRepository userRepository,  ParkingAvailabilityService availabilityService) {
+    public ParkingController(ParkingService parkingService, ParkingRepository parkingRepository, CurrencyJsonParsingService currencyJsonParsingService, UserRepository userRepository) {
         this.parkingService = parkingService;
         this.parkingRepository = parkingRepository;
         this.currencyJsonParsingService = currencyJsonParsingService;
         this.userRepository = userRepository;
-        this.availabilityService = availabilityService;
     }
 
     //-------------    ADD PARKING VIEW ******START --------------//
@@ -49,13 +45,12 @@ public class ParkingController {
 
 
     //-------------    PARKING VIEW LIST   --------------//
-//    @GetMapping("/list")
-//    public String listOfParkings(Model model, @ModelAttribute("currentUser") User user) {
-//        List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
-//        model.addAttribute("parkingAddresses", parkingAddresses);
-//        model.addAttribute("reservation", new Reservation());
-//        return "parking/parking_list";
-//    }
+    @GetMapping("/list")
+    public String listOfParkings(Model model) {
+        List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
+        model.addAttribute("parkingAddresses", parkingAddresses);
+        return "parking/parking_list";
+    }
 
     //-------------    PARKING FIND BY PARAMETER   --------------//
     @RequestMapping(value = "/list/search", method = RequestMethod.GET)

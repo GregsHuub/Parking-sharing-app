@@ -54,9 +54,9 @@ public class User extends BaseEntity {
     @OneToOne
     private HomeAddress homeAddress;
     @OneToMany(mappedBy = "user")
-    Set<ParkingAddress> parkingAddress = new HashSet<>();
+    Set<ParkingAddress> parkingAddress;
     @OneToMany(mappedBy = "user")
-    private Set<Reservation> reservation = new HashSet<>();
+    private Set<Reservation> reservation;
 
     public Long getId() {
         return id;
@@ -155,6 +155,14 @@ public class User extends BaseEntity {
     }
 
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -172,13 +180,5 @@ public class User extends BaseEntity {
                 ", parkingAddress=" + parkingAddress +
                 ", reservation=" + reservation +
                 '}';
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }
