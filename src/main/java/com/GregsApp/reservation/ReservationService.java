@@ -30,27 +30,10 @@ public class ReservationService {
         reservation.setCreatedOn(LocalDateTime.now());
         reservationRepository.save(reservation);
     }
-
-    public void createReservationDTO(ReservationCreateDto reservationCreateDto, User userId, ParkingAddress parkingAddress) {
-
-        User userById = userRepository.findOneById(userId.getId());
-//        ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
-
-        Reservation reservation = new Reservation();
-        reservation.setCreatedOn(reservationCreateDto.getCreatedOn());
-        reservation.setUpdatedOn(reservationCreateDto.getUpdatedOn());
-        reservation.setHowManyTimesPlaceWasBooked(reservationCreateDto.getHowManyTimesPlaceWasBooked());
-        reservation.setMinDurationTime(reservationCreateDto.getMinDurationTime());
-        reservation.setPrice(reservationCreateDto.getPrice());
-        reservation.setReservationHashId(reservationCreateDto.getReservationHashId());
-        reservation.setServiceFee(reservationCreateDto.getServiceFee());
-        reservation.setTimeFrom(reservationCreateDto.getTimeFrom());
-        reservation.setTimeTo(reservationCreateDto.getTimeTo());
-        reservation.setTotalPrice(reservationCreateDto.getTotalPrice());
-        reservation.setUser(userById);
-
+    public void createReservationVersionSecond(Reservation reservation){
         reservationRepository.save(reservation);
     }
+
 
     public void updateReservation(Long id, ReservationCreateDto reservationCreateDto){
         Reservation reservation = reservationRepository.findOneById(id);

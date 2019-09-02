@@ -26,9 +26,11 @@ public class Reservation {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id" , nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    //    (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "parking_id", nullable = false)
     private ParkingAddress parkingAddress;

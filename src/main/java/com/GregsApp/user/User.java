@@ -40,6 +40,14 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @OneToOne
+    private HomeAddress homeAddress;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ParkingAddress> parkingAddress;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Reservation> reservation;
 
     @PrePersist
     public void prePersist() {
@@ -51,12 +59,6 @@ public class User extends BaseEntity {
         updatedOn = LocalDateTime.now();
     }
 
-    @OneToOne
-    private HomeAddress homeAddress;
-    @OneToMany(mappedBy = "user")
-    Set<ParkingAddress> parkingAddress;
-    @OneToMany(mappedBy = "user")
-    private Set<Reservation> reservation;
 
     public Long getId() {
         return id;

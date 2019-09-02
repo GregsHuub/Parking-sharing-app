@@ -1,5 +1,6 @@
 package com.GregsApp.parking_addresses;
 
+import com.GregsApp.reservation.Reservation;
 import com.GregsApp.user.User;
 
 import javax.persistence.*;
@@ -34,6 +35,9 @@ public class ParkingAddress {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservation;
 
 
     @PrePersist
@@ -186,5 +190,13 @@ public class ParkingAddress {
                 ", path='" + path + '\'' +
                 ", user=" + user.getId() +
                 '}';
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

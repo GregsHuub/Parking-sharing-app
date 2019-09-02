@@ -30,50 +30,45 @@
                 <!-- Car List Content Start -->
                 <div class="col-lg-8">
                     <div class="car-details-content">
-                        <h2 th:text="${parking.street}"></h2>
-                        <h2 th:text="${parking.id}"></h2>
+                        <h2 th:text="${parking.parkingName}"></h2>
                         <div class="car-preview-crousel">
                             <div class="single-car-preview">
-                                <img src="../../static/assets/img/car/car-5.jpg" alt="JSOFT">
+                                <img  th:if="${parking.fileName != null}" th:src="@{${'/uploadPhotos/' + parking.fileName}}" alt="User parking photo">
+                                <img  th:unless="${parking.fileName != null}" th:src="@{/uploadPhotos/default_parking_image.jpg}" alt="User parking photo">
                             </div>
                             <div class="single-car-preview">
-                                <img src="../../static/assets/img/car/car-1.jpg" alt="JSOFT">
-                            </div>
-                            <div class="single-car-preview">
-                                <img src="../../static/assets/img/car/car-6.jpg" alt="JSOFT">
+                                <img th:src="@{/assets/img/car/car-1.jpg}" alt="JSOFT">
                             </div>
                         </div>
                         <div class="car-details-info">
-                            <h4>Additional Info</h4>
-
+                            <h4 th:text="${'ul. '+parking.street + ', ' + parking.streetNumber}"></h4>
                             <form th:action="@{'/reservation/details/save?id=' + ${parking.id}}" method="post" th:object="${reservation}">
+                                <input type="hidden" th:name="parkingAddress" th:id="parkingAddress" th:value="${parking.id}">
                                 <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">
-<!--                                <input type="hidden" th:name="parkingAddress" th:id="parkingAddress" th:value="${parking.id}">-->
-
-                            <p>The Aventador LPER 720-4 50° ise a limited (200 units – 100 Coupe and 100 Roadster) versione of thed Aventadored LP 700-4 commemorating the 50th anniversary of Lamborghini. It included ised increased engine power to 720 PS (530 kW; 710 bhp) via a new specific engine calibration, enlarged and extended front air intakes and the aerodynamic splitter.</p>
-                            <button type="submit" class="rent-btn">Wynajmij</button>
-                            </form>
-
+                            <p th:text="${parking.parkingDescription}"></p>
                             <div class="technical-info">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="tech-info-table">
                                             <table class="table table-bordered">
                                                 <tr>
-                                                    <th>Class</th>
-                                                    <td>Compact</td>
+                                                    <th>Maksymalna wysokość</th>
+                                                    <td th:text="${parking.maxHeight}"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Fuel</th>
-                                                    <td>Petrol</td>
+                                                    <th>Maksymalna szerokość</th>
+                                                    <td th:text="${parking.maxWidth}"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Doors</th>
-                                                    <td>5</td>
+                                                    <th>Dodatki</th>
+                                                    <span>
+                                                    <td th:if="${parking.feature_custom == null}" th:text="${parking.feature_custom}"></td>
+                                                    <td th:unless="${parking.feature_custom == null}" th:text="${'Brak'}"></td>
+                                                    </span>
                                                 </tr>
                                                 <tr>
-                                                    <th>GearBox</th>
-                                                    <td>Automatic</td>
+                                                    <th>Dostępność godzinowa</th>
+                                                    <td th:text="${parking.feature_access_time}"></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -82,23 +77,21 @@
                                     <div class="col-lg-6">
                                         <div class="tech-info-list">
                                             <ul>
-                                                <li>ABS</li>
-                                                <li>Air Bags</li>
-                                                <li>Bluetooth</li>
-                                                <li>Car Kit</li>
-                                                <li>GPS</li>
-                                                <li>Music</li>
-                                                <li>Bluetooth</li>
-                                                <li>ABS</li>
-                                                <li>GPS</li>
+                                                <li>Chroniony</li>
+
                                             </ul>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
+                                <button type="submit" class="rent-btn">Wynajmij</button>
+                            </form>
 
                             <div class="review-area">
-                                <h3>Be the first to review “Aston Martin One-77”</h3>
+                                <h3>Masz dodatkowe pytania? zadaj je właścicielowi</h3>
+                                <br>
+                                <h4 th:text="${parking.user.email}"></h4>
                                 <div class="review-star">
                                     <p class="rating">
                                         <i class="fa fa-star"></i>
@@ -113,7 +106,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="name-input">
-                                                    <input type="text" placeholder="Full Name">
+                                                    <input type="text" placeholder="Imie">
                                                 </div>
                                             </div>
 
@@ -125,7 +118,7 @@
                                         </div>
 
                                         <div class="message-input">
-                                            <textarea name="review" cols="30" rows="5" placeholder="Write Your Feedback Here!"></textarea>
+                                            <textarea name="review" cols="30" rows="5" placeholder="Wpisz treść swojego zapytania"></textarea>
                                         </div>
 
                                         <div class="input-submit">
@@ -145,11 +138,11 @@
                     <div class="sidebar-content-wrap m-t-50">
                         <!-- Single Sidebar Start -->
                         <div class="single-sidebar">
-                            <h3>For More Informations</h3>
+                            <h3>Informacje o wynajmującym</h3>
 
                             <div class="sidebar-body">
-                                <p><i class="fa fa-mobile"></i> +8801816 277 243</p>
-                                <p><i class="fa fa-clock-o"></i> Mon - Sat 8.00 - 18.00</p>
+                                <p th:text="${parking.user.email}"><i class="fa fa-battery"></i></p>
+                                <p th:text="${parking.createdOn}"><i class="fa fa-clock-o"></i></p>
                             </div>
                         </div>
                         <!-- Single Sidebar End -->
