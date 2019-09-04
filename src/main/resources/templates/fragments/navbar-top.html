@@ -85,13 +85,13 @@
                             <nav class="mainmenu alignright">
                                 <ul>
                                     <span sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <li class="active"><a th:href="@{/main}">PANEL ADMINA</a>
+                                    <li class="active"><a th:href="@{/admin/panel}">PANEL ADMINA</a>
                                         </span>
 
-                                    <li class="active"><a th:href="@{/main}">Home</a>
+                                    <li class="active"><a th:href="@{/}">Home</a>
 
                                     </li>
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a th:href="@{#}">About</a></li>
                                     <li><a th:href="@{#}">Parkingi</a>
                                         <ul>
                                             <li><a th:href="@{/parking/add_form}">Dodaj miejsce parkingowe</a></li>
