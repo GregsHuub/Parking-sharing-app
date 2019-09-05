@@ -66,6 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/assets/**",
                         "/fonts/**",
 //                       sbadmin
-                        "/sbadmin/**");
+                        "/sbadmin/**",
+                        "/sbadmin/vendor/**");
+
     }
 }

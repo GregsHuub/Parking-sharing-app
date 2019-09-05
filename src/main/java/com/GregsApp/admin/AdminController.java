@@ -28,21 +28,24 @@ public class AdminController {
     }
 
     @ModelAttribute
-    public void addresList(Model model){
+    public void addresList(Model model) {
         model.addAttribute("address", homeAddressService.getHomeAddresses());
     }
 
     @GetMapping("/panel")
-        public String adminMainPage(@ModelAttribute("currentUser") User user){
+    public String adminMainPage(@ModelAttribute("currentUser") User user) {
 
         return "admin/main_panel";
     }
 
+    // START ---------    USER STUFF
     @GetMapping("/usersList")
     public String usersList(Model model) {
         model.addAttribute("users", userService.getList());
-        return "admin/admin_users_list";
+        return "admin/usersList";
     }
+
+    // FINISH ---------    USER STUFF
 
     @GetMapping("/parkingList")
     public String parkingList(Model model) {
