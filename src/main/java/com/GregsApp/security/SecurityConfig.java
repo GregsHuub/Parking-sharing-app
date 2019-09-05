@@ -38,9 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/reservation/**").permitAll()
                 .antMatchers("/parking/list").permitAll()
-                .antMatchers("/admin/register").hasAuthority("ADMIN")
-                .antMatchers("/admin/register_save").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN").anyRequest()
                 .authenticated().and().csrf().disable()
                 .formLogin().loginPage("/user/login")
                 .failureUrl("/user/login?error=true")
@@ -66,6 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/scss/**",
                         "/vendor/**",
                         "/assets/**",
-                        "/fonts/**");
+                        "/fonts/**",
+//                       sbadmin
+                        "/sbadmin/**");
     }
 }

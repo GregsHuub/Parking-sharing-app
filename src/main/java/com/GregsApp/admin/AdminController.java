@@ -26,28 +26,32 @@ public class AdminController {
 
     }
 
-
     @ModelAttribute
     public void addresList(Model model){
         model.addAttribute("address", homeAddressService.getHomeAddresses());
     }
-    
+
+    @GetMapping("/main_panel")
+        public String adminMainPage(){
+
+        return "admin/index";
+    }
+
     @GetMapping("/usersList")
-    public String usersList(Model model){
+    public String usersList(Model model) {
         model.addAttribute("users", userService.getList());
         return "admin/admin_users_list";
     }
-    
+
     @GetMapping("/parkingList")
-    public String parkingList(Model model){
+    public String parkingList(Model model) {
         model.addAttribute("parking", parkingService.allParkingPlaces());
         return "admin/admin_parkings_list";
     }
 
-
     @GetMapping("/access-denied")
     @ResponseBody
-    public String testAdminResposne(){
+    public String testAdminResposne() {
         return "access-denied";
     }
 

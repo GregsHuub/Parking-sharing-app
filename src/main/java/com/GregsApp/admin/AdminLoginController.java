@@ -21,7 +21,8 @@ public class AdminLoginController {
     public String adminLoginForm(){
         return "admin/admin_login";
     }
-    @GetMapping("/register.pl")
+
+    @GetMapping("/register")
     public String adminRegisterForm(Model model){
         model.addAttribute("admin", new UserDto());
         return "admin/admin_register";
@@ -29,7 +30,7 @@ public class AdminLoginController {
     @PostMapping("/register_save")
     public String adminSave(@ModelAttribute UserDto adminProfile){
         adminService.createAdminAccount(adminProfile);
-        return "redirect:/";
+        return "redirect:/admin/main_panel";
     }
 
 }
