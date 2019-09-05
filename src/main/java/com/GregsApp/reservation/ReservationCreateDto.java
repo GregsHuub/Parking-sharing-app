@@ -24,19 +24,19 @@ public class ReservationCreateDto {
     public ReservationCreateDto(){
 
     }
-    public ReservationCreateDto(Reservation reservation){
-        this.timeFrom = reservation.getTimeFrom();
-        this.timeTo = reservation.getTimeTo();
-        this.price = reservation.getPrice();
-        this.serviceFee = reservation.getServiceFee();
-        this.totalPrice = reservation.getTotalPrice();
-        this.howManyTimesPlaceWasBooked = reservation.getHowManyTimesPlaceWasBooked();
-        this.minDurationTime = reservation.getMinDurationTime();
-        this.reservationHashId = reservation.getReservationHashId();
-        this.createdOn = reservation.getCreatedOn();
-        this.updatedOn = reservation.getUpdatedOn();
-        this.userId = reservation.getUser().getId();
-    }
+//    public ReservationCreateDto(Reservation reservation){
+//        this.timeFrom = reservation.getTimeFrom();
+//        this.timeTo = reservation.getTimeTo();
+//        this.price = reservation.getPrice();
+//        this.serviceFee = reservation.getServiceFee();
+//        this.totalPrice = reservation.getTotalPrice();
+//        this.howManyTimesPlaceWasBooked = reservation.getHowManyTimesPlaceWasBooked();
+//        this.minDurationTime = reservation.getMinDurationTime();
+//        this.reservationHashId = reservation.getReservationHashId();
+//        this.createdOn = reservation.getCreatedOn();
+//        this.updatedOn = reservation.getUpdatedOn();
+//        this.userId = reservation.getUser().getId();
+//    }
 
     @PrePersist
     public void prePersist() {

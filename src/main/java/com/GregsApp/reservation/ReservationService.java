@@ -44,8 +44,8 @@ public class ReservationService {
         reservation.setPrice(reservationCreateDto.getPrice());
         reservation.setReservationHashId(reservationCreateDto.getReservationHashId());
         reservation.setServiceFee(reservationCreateDto.getServiceFee());
-        reservation.setTimeFrom(reservationCreateDto.getTimeFrom());
-        reservation.setTimeTo(reservationCreateDto.getTimeTo());
+//        reservation.setTimeFrom(reservationCreateDto.getTimeFrom());
+//        reservation.setTimeTo(reservationCreateDto.getTimeTo());
         reservation.setTotalPrice(reservationCreateDto.getTotalPrice());
     }
 

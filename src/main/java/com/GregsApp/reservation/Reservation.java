@@ -2,10 +2,13 @@ package com.GregsApp.reservation;
 
 import com.GregsApp.parking_addresses.ParkingAddress;
 import com.GregsApp.user.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -15,8 +18,14 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime timeFrom;
-    private LocalDateTime timeTo;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate timeFromDATE;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate timeToDATE;
+    @DateTimeFormat(pattern = "hh:mm")
+    private LocalTime timeFromHOURS;
+    @DateTimeFormat(pattern = "hh:mm")
+    private LocalTime timeToHOURS;
     private BigDecimal price;
     private BigDecimal serviceFee;
     private BigDecimal totalPrice;
@@ -29,7 +38,6 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    //    (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "parking_id", nullable = false)
@@ -46,7 +54,6 @@ public class Reservation {
         updatedOn = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
-
     public Long getId() {
         return id;
     }
@@ -55,20 +62,36 @@ public class Reservation {
         this.id = id;
     }
 
-    public LocalDateTime getTimeFrom() {
-        return timeFrom;
+    public LocalDate getTimeFromDATE() {
+        return timeFromDATE;
     }
 
-    public void setTimeFrom(LocalDateTime timeFrom) {
-        this.timeFrom = timeFrom;
+    public void setTimeFromDATE(LocalDate timeFromDATE) {
+        this.timeFromDATE = timeFromDATE;
     }
 
-    public LocalDateTime getTimeTo() {
-        return timeTo;
+    public LocalDate getTimeToDATE() {
+        return timeToDATE;
     }
 
-    public void setTimeTo(LocalDateTime timeTo) {
-        this.timeTo = timeTo;
+    public void setTimeToDATE(LocalDate timeToDATE) {
+        this.timeToDATE = timeToDATE;
+    }
+
+    public LocalTime getTimeFromHOURS() {
+        return timeFromHOURS;
+    }
+
+    public void setTimeFromHOURS(LocalTime timeFromHOURS) {
+        this.timeFromHOURS = timeFromHOURS;
+    }
+
+    public LocalTime getTimeToHOURS() {
+        return timeToHOURS;
+    }
+
+    public void setTimeToHOURS(LocalTime timeToHOURS) {
+        this.timeToHOURS = timeToHOURS;
     }
 
     public BigDecimal getPrice() {
