@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Panel administratora</title>
 
     <!-- Custom fonts for this template-->
     <link th:href="@{/sbadmin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -30,11 +30,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main_panel.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">ADMIN <sup>x.x</sup></div>
         </a>
 
         <!-- Divider -->
@@ -42,7 +42,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="main_panel.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -325,7 +325,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                            <span th:text="${currentUser.email}" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                             <img class="img-profile rounded-circle"
                                  th:src="@{https://source.unsplash.com/QAB-WJcbgJk/60x60}">
                         </a>

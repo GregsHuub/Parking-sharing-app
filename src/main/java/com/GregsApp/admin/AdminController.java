@@ -1,6 +1,7 @@
 package com.GregsApp.admin;
 
 import com.GregsApp.address.HomeAddressService;
+import com.GregsApp.user.User;
 import com.GregsApp.user.UserDto;
 import com.GregsApp.user.UserService;
 import com.GregsApp.parking_addresses.ParkingService;
@@ -31,10 +32,10 @@ public class AdminController {
         model.addAttribute("address", homeAddressService.getHomeAddresses());
     }
 
-    @GetMapping("/main_panel")
-        public String adminMainPage(){
+    @GetMapping("/panel")
+        public String adminMainPage(@ModelAttribute("currentUser") User user){
 
-        return "admin/index";
+        return "admin/main_panel";
     }
 
     @GetMapping("/usersList")
