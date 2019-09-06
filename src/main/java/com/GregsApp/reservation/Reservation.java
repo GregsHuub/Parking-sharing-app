@@ -2,6 +2,7 @@ package com.GregsApp.reservation;
 
 import com.GregsApp.parking_addresses.ParkingAddress;
 import com.GregsApp.user.User;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,9 +19,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate timeFromDATE;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate timeToDATE;
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeFromHOURS;
@@ -32,6 +33,7 @@ public class Reservation {
     private Integer howManyTimesPlaceWasBooked; // couldnt find better name
     private Integer minDurationTime; // minimum time to reserve
     private UUID reservationHashId;
+    @CreationTimestamp
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 

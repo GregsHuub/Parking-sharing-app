@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -24,18 +25,12 @@ public class ReservationService {
         this.userRepository = userRepository;
     }
 
-    public void createReservation(Reservation reservation, ParkingAddress parkingAddress, User user) {
-        reservation.setParkingAddress(parkingAddress);
-        reservation.setUser(user);
-        reservation.setCreatedOn(LocalDateTime.now());
-        reservationRepository.save(reservation);
-    }
-    public void createReservationVersionSecond(Reservation reservation){
+    public void createReservation(Reservation reservation) {
+        reservation.setReservationHashId(UUID.randomUUID());
         reservationRepository.save(reservation);
     }
 
-
-    public void updateReservation(Long id, ReservationCreateDto reservationCreateDto){
+    public void updateReservation(Long id, ReservationCreateDto reservationCreateDto) {
         Reservation reservation = reservationRepository.findOneById(id);
 
         reservation.setUpdatedOn(reservationCreateDto.getUpdatedOn());
@@ -44,16 +39,11 @@ public class ReservationService {
         reservation.setPrice(reservationCreateDto.getPrice());
         reservation.setReservationHashId(reservationCreateDto.getReservationHashId());
         reservation.setServiceFee(reservationCreateDto.getServiceFee());
-//        reservation.setTimeFrom(reservationCreateDto.getTimeFrom());
-//        reservation.setTimeTo(reservationCreateDto.getTimeTo());
         reservation.setTotalPrice(reservationCreateDto.getTotalPrice());
     }
 
-    public ParkingRepository getParkingRepository() {
-        return parkingRepository;
+    public Reservation findReservById(Long id) {
+        return reservationRepository.findOneById(id);
     }
 
-    public void setParkingRepository(ParkingRepository parkingRepository) {
-        this.parkingRepository = parkingRepository;
-    }
 }

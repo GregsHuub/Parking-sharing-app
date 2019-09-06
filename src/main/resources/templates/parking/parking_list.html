@@ -57,13 +57,14 @@
 
                                         </ul>
                                         <ul class="car-info-list">
-                                            <li th:text="${'data dodania: ' + parking.createdOn}"></li>
+                                            <li th:text="${'Wynajęty do: ' + }"></li>
                                             <div th:if="${parking.reserved}">
                                                 <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
                                             </div>
                                             <div th:unless="${parking.reserved}">
                                                 <li style="background-color: green; color: white" th:text="Dostępny"></li>
                                             </div>
+
 
                                         </ul>
                                         <p class="rating">
@@ -75,10 +76,13 @@
                                         </p>
                                         <span th:if="${parking.reserved}">
                                             <span style="background-color: grey" class="rent-btn">Wynajmij</span>
-                                            </span>
+                                        </span>
                                         <span th:unless="${parking.reserved}">
                                             <a th:href="@{'/reservation/details?id=' + ${parking.id}}" class="rent-btn">Wynajmij</a>
-                                            </span>
+                                        </span>
+                                        <span th:if="${parking.reserved}">
+                                            <span th:text="${'Parking wynajęty do: ' + ${reservationById.getTimeToDATE() + ', ' + reservationById.getTimeToHOURS()}}"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

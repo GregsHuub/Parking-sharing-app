@@ -23,8 +23,6 @@ public class ShareApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ShareApplication.class, args);
-
-
     }
 
     @Bean
