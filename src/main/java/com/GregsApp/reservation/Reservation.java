@@ -22,9 +22,9 @@ public class Reservation {
     private LocalDate timeFromDATE;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate timeToDATE;
-    @DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeFromHOURS;
-    @DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeToHOURS;
     private BigDecimal price;
     private BigDecimal serviceFee;
