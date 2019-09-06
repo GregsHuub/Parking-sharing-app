@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org">
 
+<style>
+    .reservationON{
+        border: solid 1px grey;
+        background-color: red;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+    }
+    .reservationOFF{
+        border: solid 1px grey;
+        background-color: forestgreen;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+    }
+    .rentFrom {
+        font-weight: bold;
+        color: black
+    }
+    .rentTo{
+        font-weight: bold;
+        color: black;
+    }
+</style>
+
 <div th:replace="fragments/head :: head"></div>
 <body  class="loader-active">
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
@@ -34,6 +59,7 @@
 
                         <!-- Single Car Start -->
                         <th:block th:each="parking : ${parkingAddresses}">
+                            <th:block th:each="reservation : ${reservations}">
 <!--                            <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">-->
 <!--                            <input type="hidden" th:name="parking" th:id="parking" th:value="${parking.id}">-->
                             <div class="col-lg-6 col-md-6">
@@ -49,44 +75,39 @@
                                         </div>
                                         <h6>Opis:</h6>
                                         <p th:text="${parking.parkingDescription}"></p>
+
+                                        <div th:if="${parking.reserved}">
+                                            <div class="reservationON" th:text="Zarezerwowany"></div>
+                                        </div>
+                                        <div th:unless="${parking.reserved}">
+                                            <div class="reservationOFF" th:text="Dostępny"></div>
+                                        </div>
+
                                         <ul class="car-info-list">
                                             <li th:text="${'Wys. ' + parking.maxWidth+'m'}"></li>
                                             <li th:text="${'Szer. ' + parking.maxHeight+'m'}"></li>
                                             <li th:text="${'Dostęp ' + parking.feature_access_time}"></li>
-
-
-                                        </ul>
-                                        <ul class="car-info-list">
-                                            <li th:text="${'Wynajęty do: ' + }"></li>
-                                            <div th:if="${parking.reserved}">
-                                                <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
-                                            </div>
-                                            <div th:unless="${parking.reserved}">
-                                                <li style="background-color: green; color: white" th:text="Dostępny"></li>
-                                            </div>
-
-
                                         </ul>
                                         <p class="rating">
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
                                         </p>
                                         <span th:if="${parking.reserved}">
-                                            <span style="background-color: grey" class="rent-btn">Wynajmij</span>
+<!--                                            <span style="background-color: grey" class="rent-btn">Wynajmij</span>-->
                                         </span>
                                         <span th:unless="${parking.reserved}">
-                                            <a th:href="@{'/reservation/details?id=' + ${parking.id}}" class="rent-btn">Wynajmij</a>
+                                            <a th:href="@{'/reservation/details?id=' + ${parking.id}}" class="rent-btn" >Wynajmij</a>
                                         </span>
-                                        <span th:if="${parking.reserved}">
-                                            <span th:text="${'Parking wynajęty do: ' + ${reservationById.getTimeToDATE() + ', ' + reservationById.getTimeToHOURS()}}"></span>
+                                        <span th:if="${parking.getId().equals(reservation.getParkingAddress().getId())}">
+                                            <span>Wynajęty od: </span><span class="rentFrom" th:text="${reservation.getTimeFromDATE() + ', ' + reservation.getTimeFromHOURS()}"></span>
+                                            <br>
+                                            <span>Wynajęty do: </span><span class="rentTo" th:text="${reservation.getTimeToDATE() + ', ' + reservation.getTimeToHOURS()}"></span>
+                                            <span th:text="${Duration}"></span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Single Car End -->
+                            </th:block>
                         </th:block>
 
                     </div>

@@ -2,13 +2,12 @@ package com.GregsApp.reservation;
 
 import com.GregsApp.parking_addresses.ParkingAddress;
 import com.GregsApp.parking_addresses.ParkingRepository;
-import com.GregsApp.user.User;
 import com.GregsApp.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,9 +19,10 @@ public class ReservationService {
     private ParkingRepository parkingRepository;
 
     @Autowired
-    public ReservationService(ReservationRepository reservationRepository, UserRepository userRepository) {
+    public ReservationService(ReservationRepository reservationRepository, UserRepository userRepository, ParkingRepository parkingRepository) {
         this.reservationRepository = reservationRepository;
         this.userRepository = userRepository;
+        this.parkingRepository = parkingRepository;
     }
 
     public void createReservation(Reservation reservation) {
@@ -45,5 +45,24 @@ public class ReservationService {
     public Reservation findReservById(Long id) {
         return reservationRepository.findOneById(id);
     }
+
+    public List<Reservation> reservationsList() {
+        return reservationRepository.findAll();
+    }
+
+    public Reservation findByParking() {
+        List<ParkingAddress> allParkings = parkingRepository.findAll();
+        List<Reservation> allReservations = reservationRepository.findAll();
+
+        for (ParkingAddress p : allParkings) {
+            for (Reservation r : allReservations) {
+                if (p.getId().equals(r.getParkingAddress().getId())) {
+                    return r;
+                }
+            }
+        }
+        return null;
+    }
+
 
 }

@@ -61,11 +61,9 @@ public class ParkingController {
     //-------------    PARKING VIEW LIST   --------------//
     @GetMapping("/list")
     public String listOfParkings(Model model) {
-        List<ParkingAddress> parkingAddresses = parkingService.allParkingPlaces();
-        model.addAttribute("parkingAddresses", parkingAddresses);
-        for(ParkingAddress p : parkingAddresses){
-            model.addAttribute("reservationById", reservationService.findReservById(p.getId()));
-        }
+
+        model.addAttribute("parkingAddresses", parkingService.allParkingPlaces());
+        model.addAttribute("reservations", reservationService.reservationsList());
         return "parking/parking_list";
     }
 
