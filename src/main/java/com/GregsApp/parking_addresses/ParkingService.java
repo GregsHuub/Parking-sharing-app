@@ -40,7 +40,8 @@ public class ParkingService {
         ParkingAddress parkingById = parkingRepository.findOneById(parkingAddress.getId());
         parkingRepository.save(parkingById);
     }
-    public ParkingAddress parkingById(Long id){
+
+    public ParkingAddress parkingById(Long id) {
         return parkingRepository.findOneById(id);
 
     }
@@ -62,6 +63,7 @@ public class ParkingService {
     }
 
     public void createParkingPlace(ParkingAddress parkingAddress, MultipartFile imageFile) throws IOException {
+
         Path currentPath = Paths.get(".");
         Path absolutePath = currentPath.toAbsolutePath();
         parkingAddress.setPath(absolutePath + "/src/main/resources/static/uploadPhotos/");
@@ -71,7 +73,6 @@ public class ParkingService {
         Files.write(path, bytes);
 
         parkingRepository.save(parkingAddress);
+
     }
-
-
 }

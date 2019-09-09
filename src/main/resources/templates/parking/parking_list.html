@@ -101,7 +101,7 @@
                                             <span>Wynajęty od: </span><span class="rentFrom" th:text="${reservation.getTimeFromDATE() + ', ' + reservation.getTimeFromHOURS()}"></span>
                                             <br>
                                             <span>Wynajęty do: </span><span class="rentTo" th:text="${reservation.getTimeToDATE() + ', ' + reservation.getTimeToHOURS()}"></span>
-                                            <span th:text="${Duration}"></span>
+                                            <div th:text="${'Tutaj wstawić date pomiedzy...'}"></div>
                                         </span>
                                     </div>
                                 </div>

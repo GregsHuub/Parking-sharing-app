@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,18 +52,11 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public Reservation findByParking() {
-        List<ParkingAddress> allParkings = parkingRepository.findAll();
-        List<Reservation> allReservations = reservationRepository.findAll();
-
-        for (ParkingAddress p : allParkings) {
-            for (Reservation r : allReservations) {
-                if (p.getId().equals(r.getParkingAddress().getId())) {
-                    return r;
-                }
-            }
-        }
-        return null;
+    public Long countHoursBetweenDate(LocalDate from, LocalDate to){
+        return Duration.between(from,to).toDays();
+    }
+    public Long countDaysBetweenDate(LocalDate from, LocalDate to){
+        return Duration.between(from, to). toHours();
     }
 
 

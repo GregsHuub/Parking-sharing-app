@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<style>
+    .main-buttons{
+        margin-top: 10px;
+        border: white 1px solid;
+
+
+    }
+</style>
 <div th:replace="fragments/head :: head"></div>
 <body class="loader-active">
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
@@ -20,23 +28,26 @@
                             <p>Mozesz wyszukac parking po wpisaniu <b>ulicy</b> lub rejonu np. <b>centrum</b></p>
                             <div class="book-ur-car">
                                 <form th:action="@{/parking/list/search}" method="get">
-                                    <div style="border: white 1px solid">
+                                    <div class="main-buttons">
                                         <input type="text" th:name="street" th:placeholder="street"/>
                                     </div>
                                     <p></p>
-                                    <div class="car-choose bookinput-item">
-                                        <select name="area" id="area" class="custom-select">
-                                            <option value="" th:disabled="disabled" th:selected="selected"> Wybierz
-                                                rejon
-                                            </option>
-                                            <option value="center">Centrum</option>
-                                            <option value="krzyki">Krzyki</option>
-                                            <option value="dogField">Psie pole</option>
-                                        </select>
-                                    </div>
+                                    <div>
+                                        <div class="main-buttons">
+                                            <select name="area" id="area" class="custom-select">
+                                                <option value="" th:disabled="disabled" th:selected="selected"> Wybierz
+                                                    rejon
+                                                </option>
+                                                <option value="center">Centrum</option>
+                                                <option value="krzyki">Krzyki</option>
+                                                <option value="dogField">Psie pole</option>
+                                            </select>
+                                        </div>
 
-                                    <div class="bookcar-btn bookinput-item">
-                                        <button type="submit">Znajdź parkin</button>
+                                        <div class="main-buttons bookcar-btn button">
+                                            <button type="submit">Znajdź parking / pokaż wszystkie</button>
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>
@@ -210,79 +221,79 @@
 </div>
 <!--== Partner Area End ==-->
 
-<!--== Services Area Start ==-->
-<section id="service-area" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <!-- Section Title Start -->
-            <div class="col-lg-12">
-                <div class="section-title  text-center">
-                    <h2>Our Services</h2>
-                    <span class="title-line"><i class="fa fa-car"></i></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <!-- Section Title End -->
-        </div>
+<!--&lt;!&ndash;== Services Area Start ==&ndash;&gt;-->
+<!--<section id="service-area" class="section-padding">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            &lt;!&ndash; Section Title Start &ndash;&gt;-->
+<!--            <div class="col-lg-12">-->
+<!--                <div class="section-title  text-center">-->
+<!--                    <h2>Our Services</h2>-->
+<!--                    <span class="title-line"><i class="fa fa-car"></i></span>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Section Title End &ndash;&gt;-->
+<!--        </div>-->
 
-        <!-- Service Content Start -->
-        <div class="row">
-            <div class="col-lg-11 m-auto text-center">
-                <div class="service-container-wrap">
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-taxi"></i>
-                        <h3>RENTAL CAR</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
+<!--        &lt;!&ndash; Service Content Start &ndash;&gt;-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-11 m-auto text-center">-->
+<!--                <div class="service-container-wrap">-->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-taxi"></i>-->
+<!--                        <h3>RENTAL CAR</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
 
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-cog"></i>
-                        <h3>CAR REPAIR</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-cog"></i>-->
+<!--                        <h3>CAR REPAIR</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
 
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-map-marker"></i>
-                        <h3>TAXI SERVICE</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-map-marker"></i>-->
+<!--                        <h3>TAXI SERVICE</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
 
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-life-ring"></i>
-                        <h3>life insurance</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-life-ring"></i>-->
+<!--                        <h3>life insurance</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
 
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-bath"></i>
-                        <h3>car wash</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-bath"></i>-->
+<!--                        <h3>car wash</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
 
-                    <!-- Single Service Start -->
-                    <div class="service-item">
-                        <i class="fa fa-phone"></i>
-                        <h3>call driver</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-                    </div>
-                    <!-- Single Service End -->
-                </div>
-            </div>
-        </div>
-        <!-- Service Content End -->
-    </div>
-</section>
-<!--== Services Area End ==-->
+<!--                    &lt;!&ndash; Single Service Start &ndash;&gt;-->
+<!--                    <div class="service-item">-->
+<!--                        <i class="fa fa-phone"></i>-->
+<!--                        <h3>call driver</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Single Service End &ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Service Content End &ndash;&gt;-->
+<!--    </div>-->
+<!--</section>-->
+<!--&lt;!&ndash;== Services Area End ==&ndash;&gt;-->
 
 <!--== Fun Fact Area Start ==-->
 <section id="funfact-area" class="overlay section-padding">

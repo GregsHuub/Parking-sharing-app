@@ -100,7 +100,11 @@
                         <br>
                         <div id="image-input">
                             <label>Wstaw zdjęcie parkingu </label>
+                            <div>
+<!--                                todo-->
+                            <input th:if="${parkingAddress.fileName}" type="file" name="imageFile" >
                             <input type="file" name="imageFile" >
+                            </div>
                         </div>
                         <div class="message-input">
                             <textarea name="review" cols="30" rows="5" th:field="*{parkingDescription}"
