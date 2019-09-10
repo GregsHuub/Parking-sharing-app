@@ -39,7 +39,7 @@ public class AdminController {
     }
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
-        userService.deleteUser(id);
+        userService.deleteUserCascade(id);
         return "redirect:/admin/usersList";
     }
 

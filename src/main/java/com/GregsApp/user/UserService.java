@@ -2,6 +2,10 @@ package com.GregsApp.user;
 
 import com.GregsApp.authentication.Role;
 import com.GregsApp.authentication.RoleRepository;
+import com.GregsApp.parking_addresses.ParkingAddress;
+import com.GregsApp.parking_addresses.ParkingRepository;
+import com.GregsApp.reservation.Reservation;
+import com.GregsApp.reservation.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,13 +22,18 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ParkingRepository parkingRepository;
+    private final ReservationRepository reservationRepository;
+
 
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, ParkingRepository parkingRepository, ReservationRepository reservationRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.parkingRepository = parkingRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     public void createUser(UserDto userDto) {
@@ -65,10 +74,22 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void deleteUser(Long id){
+    public void deleteUserCascade(Long id){
         User oneById = userRepository.findOneById(id);
-        userRepository.delete(oneById);
 
+          List<ParkingAddress> usersParkings = parkingRepository.findAllByUser(oneById);
+          if(usersParkings != null) {
+              for (ParkingAddress usersParking : usersParkings) {
+                  parkingRepository.delete(usersParking);
+              }
+          }
+
+        Reservation oneByUser = reservationRepository.findOneByUser(oneById);
+        if(oneByUser != null){
+            reservationRepository.delete(oneByUser);
+        }
+
+        userRepository.delete(oneById);
     }
 
 

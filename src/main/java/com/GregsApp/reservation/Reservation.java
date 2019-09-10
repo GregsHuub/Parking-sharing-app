@@ -42,7 +42,7 @@ public class Reservation {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "parking_id", nullable = false)
+    @JoinColumn(name = "parking_id", nullable = true)
     private ParkingAddress parkingAddress;
 
 
