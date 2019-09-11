@@ -57,9 +57,8 @@
                 <div class="car-list-content">
                     <div class="row">
 
-                        <!-- Single Car Start -->
+                        <!-- Parking List -->
                         <th:block th:each="parking : ${parkingAddresses}">
-                            <th:block th:each="reservation : ${reservations}">
 <!--                            <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">-->
 <!--                            <input type="hidden" th:name="parking" th:id="parking" th:value="${parking.id}">-->
                             <div class="col-lg-6 col-md-6">
@@ -97,17 +96,20 @@
                                         <span th:unless="${parking.reserved}">
                                             <a th:href="@{'/reservation/details?id=' + ${parking.id}}" class="rent-btn" >Wynajmij</a>
                                         </span>
+
+                                        <th:block th:each="reservation : ${reservations}">
                                         <span th:if="${parking.getId().equals(reservation.getParkingAddress().getId())}">
                                             <span>Wynajęty od: </span><span class="rentFrom" th:text="${reservation.getTimeFromDATE() + ', ' + reservation.getTimeFromHOURS()}"></span>
                                             <br>
                                             <span>Wynajęty do: </span><span class="rentTo" th:text="${reservation.getTimeToDATE() + ', ' + reservation.getTimeToHOURS()}"></span>
                                             <div th:text="${'Tutaj wstawić date pomiedzy...'}"></div>
                                         </span>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Single Car End -->
-                            </th:block>
+                            <!-- Parking List -->
+
                         </th:block>
 
                     </div>

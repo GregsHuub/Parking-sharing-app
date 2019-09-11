@@ -26,7 +26,6 @@ public class UserService {
     private final ReservationRepository reservationRepository;
 
 
-
     @Autowired
     public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, ParkingRepository parkingRepository, ReservationRepository reservationRepository) {
         this.userRepository = userRepository;
@@ -74,21 +73,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void deleteUserCascade(Long id){
+    public void deleteUserCascade(Long id) {
         User oneById = userRepository.findOneById(id);
-
-          List<ParkingAddress> usersParkings = parkingRepository.findAllByUser(oneById);
-          if(usersParkings != null) {
-              for (ParkingAddress usersParking : usersParkings) {
-                  parkingRepository.delete(usersParking);
-              }
-          }
-
-        Reservation oneByUser = reservationRepository.findOneByUser(oneById);
-        if(oneByUser != null){
-            reservationRepository.delete(oneByUser);
-        }
-
         userRepository.delete(oneById);
     }
 

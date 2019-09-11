@@ -33,7 +33,7 @@ public class ParkingAddress {
     private String path;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
     @ManyToOne
     @JoinColumn(name = "reservation_id")
