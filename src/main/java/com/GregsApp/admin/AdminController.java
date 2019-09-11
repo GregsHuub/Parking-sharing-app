@@ -37,20 +37,21 @@ public class AdminController {
 
         return "admin/main_panel";
     }
-//    DELETE USER IN ADMIN PANEL //
+
+    //    DELETE USER IN ADMIN PANEL //
     @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserCascade(id);
         return "redirect:/admin/usersList";
     }
-//    ACTIVE USER FROM ADMIN PANEL  //
+
+    //    ACTIVE USER FROM ADMIN PANEL  //
     @PostMapping("/switch/{id}")
-    public String switchUser(@PathVariable("id") Long id){
+    public String switchUser(@PathVariable("id") Long id) {
         User userById = userService.getUserById(id);
-        if(userById.isEnabled()){
+        if (userById.isEnabled()) {
             userById.setEnabled(false);
-        }
-        else if(!userById.isEnabled()){
+        } else if (!userById.isEnabled()) {
             userById.setEnabled(true);
         }
         userService.updateUser(userById);

@@ -62,8 +62,17 @@ public class ParkingController {
     @GetMapping("/list")
     public String listOfParkings(Model model) {
 
-        model.addAttribute("parkingAddresses", parkingService.allParkingPlaces());
-        model.addAttribute("reservations", reservationService.reservationsList());
+        List<Reservation> reservations = reservationService.reservationsList();
+        model.addAttribute("parkingAddresses",parkingService.allParkingPlaces());
+        model.addAttribute("reservations", reservations);
+
+//        for(Reservation r : reservations){
+//            Long longDate = reservationService.datesBetweenReservationDays(r.getTimeFromDATE(), r.getTimeToDATE());
+//            Long longTime = reservationService.dateBetweenReservationHours(r.getTimeFromHOURS(), r.getTimeToHOURS());
+//            model.addAttribute("longDate", longDate);
+//            model.addAttribute("longTime", longTime);
+//
+//        }
         return "parking/parking_list";
     }
 
@@ -72,6 +81,7 @@ public class ParkingController {
     public String foundAddressByStreetPart(@RequestParam("street") String street, Model model) {
         List<ParkingAddress> addressesByStreet = parkingService.allParkingsByPartStreetName(street);
         model.addAttribute("byStreet", addressesByStreet);
+        model.addAttribute("reservations", reservationService.reservationsList());
         return "parking/parking_search_success";
     }
 

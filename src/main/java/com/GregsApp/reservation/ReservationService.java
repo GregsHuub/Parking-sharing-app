@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,12 +53,25 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public Long countHoursBetweenDate(LocalDate from, LocalDate to){
-        return Duration.between(from,to).toDays();
+//    public Long countHoursBetweenDate(LocalDate from, LocalDate to){
+//        return Duration.between(from,to).toDays();
+//    }
+//    public Long countDaysBetweenDate(LocalDate from, LocalDate to){
+//        return Duration.between(from, to). toHours();
+//    }
+
+    public Long datesBetweenReservationDays(LocalDate dateFrom, LocalDate dateTo){
+        Duration duration = Duration.between(dateFrom,dateTo);
+
+        return Math.abs(duration.toMinutes());
+
     }
-    public Long countDaysBetweenDate(LocalDate from, LocalDate to){
-        return Duration.between(from, to). toHours();
+    public Long dateBetweenReservationHours(LocalTime timeFrom, LocalTime timeTo){
+        Duration duration = Duration.between(timeFrom, timeTo);
+
+        return Math.abs(duration.toMinutes());
     }
+
 
 
 }

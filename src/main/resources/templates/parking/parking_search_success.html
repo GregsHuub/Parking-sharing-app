@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl" xmlns:th="http://www.thymeleaf.org">
 
+<style>
+    .reservationON{
+        border: solid 1px grey;
+        background-color: red;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+    }
+    .reservationOFF{
+        border: solid 1px grey;
+        background-color: forestgreen;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+    }
+    .rentFrom {
+        font-weight: bold;
+        color: black
+    }
+    .rentTo{
+        font-weight: bold;
+        color: black;
+    }
+</style>
 <div th:replace="fragments/head :: head"></div>
 <body  class="loader-active">
 <div th:replace="fragments/navbar-top :: navbar-top"></div>
@@ -32,12 +56,14 @@
                 <div class="car-list-content">
                     <div class="row">
 
-                        <!-- Single Car Start -->
+                        <!-- Parking List -->
                         <th:block th:each="parking : ${byStreet}">
+                            <!--                            <input type="hidden" th:name="user" th:id="user" th:value="${currentUser.id}">-->
+                            <!--                            <input type="hidden" th:name="parking" th:id="parking" th:value="${parking.id}">-->
                             <div class="col-lg-6 col-md-6">
                                 <div class="single-car-wrap">
                                     <img class="car-list-thumb" th:if="${parking.fileName != null}" th:src="@{${'/uploadPhotos/' + parking.fileName}}" alt="User parking photo">
-                                    <img class="car-list-thumb" th:unless="${parking.fileName != null}" th:src="@{/uploadPhotos/default_parking.jpg}" alt="User parking photo">
+                                    <img class="car-list-thumb" th:unless="${parking.fileName != null}" th:src="@{/uploadPhotos/default_parking_image.jpg}" alt="User parking photo">
                                     <div class="car-list-info without-bar">
 
                                         <h2><a th:href="@{#}" th:text="${'Nazwa parkingu - ' +parking.parkingName}"></a></h2>
@@ -47,40 +73,42 @@
                                         </div>
                                         <h6>Opis:</h6>
                                         <p th:text="${parking.parkingDescription}"></p>
+
+                                        <div th:if="${parking.reserved}">
+                                            <div class="reservationON" th:text="Zarezerwowany"></div>
+                                        </div>
+                                        <div th:unless="${parking.reserved}">
+                                            <div class="reservationOFF" th:text="Dostępny"></div>
+                                        </div>
+
                                         <ul class="car-info-list">
                                             <li th:text="${'Wys. ' + parking.maxWidth+'m'}"></li>
                                             <li th:text="${'Szer. ' + parking.maxHeight+'m'}"></li>
                                             <li th:text="${'Dostęp ' + parking.feature_access_time}"></li>
-
-
-                                        </ul>
-                                        <ul class="car-info-list">
-                                            <li th:text="${'data dodania: ' + parking.createdOn}"></li>
-                                            <div th:if="${parking.reserved}">
-                                                <li style="background-color: red; color: white" th:text="Zarezerwowany"></li>
-                                            </div>
-                                            <div th:unless="${parking.reserved}">
-                                                <li style="background-color: green; color: white" th:text="Dostępny"></li>
-                                            </div>
-
                                         </ul>
                                         <p class="rating">
                                             <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star unmark"></i>
                                         </p>
                                         <span th:if="${parking.reserved}">
-                                            <span style="background-color: grey" class="rent-btn">Wynajmij</span>
-                                            </span>
+<!--                                            <span style="background-color: grey" class="rent-btn">Wynajmij</span>-->
+                                        </span>
                                         <span th:unless="${parking.reserved}">
-                                            <a th:href="@{#}" class="rent-btn">Wynajmij</a>
-                                            </span>
+                                            <a th:href="@{'/reservation/details?id=' + ${parking.id}}" class="rent-btn" >Wynajmij</a>
+                                        </span>
+
+                                        <th:block th:each="reservation : ${reservations}">
+                                        <span th:if="${parking.getId().equals(reservation.getParkingAddress().getId())}">
+                                            <span>Wynajęty od: </span><span class="rentFrom" th:text="${reservation.getTimeFromDATE() + ', ' + reservation.getTimeFromHOURS()}"></span>
+                                            <br>
+                                            <span>Wynajęty do: </span><span class="rentTo" th:text="${reservation.getTimeToDATE() + ', ' + reservation.getTimeToHOURS()}"></span>
+                                            <div th:text="${'Tutaj wstawić date pomiedzy...'}"></div>
+                                        </span>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Single Car End -->
+                            <!-- Parking List -->
+
                         </th:block>
 
                     </div>
