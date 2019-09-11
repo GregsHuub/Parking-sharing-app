@@ -35,7 +35,7 @@ public class UserService {
         this.reservationRepository = reservationRepository;
     }
 
-    public void createUser(UserDto userDto) {
+    public User createUser(UserDto userDto) {
         User user = new User();
         user.setEnabled(true);
         user.setFirstName(userDto.getFirstName());
@@ -49,7 +49,7 @@ public class UserService {
         Role userRole = roleRepository.findOneByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 
-        userRepository.save(user);
+       return userRepository.save(user);
     }
 
     public User findUserByEmail(String email) {
