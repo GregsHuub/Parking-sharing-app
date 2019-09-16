@@ -8,7 +8,10 @@ import com.GregsApp.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -38,10 +41,10 @@ public class ReservationController {
 
 
     @PostMapping("/details/save")
-    public String reservationSave(@ModelAttribute Reservation reservation,
+    public String reservationSave(@Valid @ModelAttribute Reservation reservation, BindingResult bindingResult,
                                   @RequestParam Long id) {
         ParkingAddress byId = parkingService.parkingById(id);
-        byId.setReserved(true); // na czas testow zostawic false, potem zmienic na true
+        byId.setReserved(false); // na czas testow zostawic false, potem zmienic na true
         //todo
         reservation.setMinDurationTime(300);
         reservationService.createReservation(reservation);

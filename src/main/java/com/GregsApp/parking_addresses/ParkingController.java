@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +51,7 @@ public class ParkingController {
 
     @PostMapping("/save")
     public String saveParking(@ModelAttribute ParkingAddress parkingAddress,
-                              @RequestParam ("imageFile") MultipartFile imageFile,
+                              @RequestParam("imageFile") MultipartFile imageFile,
                               @ModelAttribute Reservation reservation) throws IOException {
 
         parkingService.createParkingPlace(parkingAddress, imageFile);
@@ -62,17 +64,16 @@ public class ParkingController {
     @GetMapping("/list")
     public String listOfParkings(Model model) {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         List<Reservation> reservations = reservationService.reservationsList();
-        model.addAttribute("parkingAddresses",parkingService.allParkingPlaces());
+//        for(int i = 0; i < reservations.size(); i++){
+//            reservations.get(i).getDateFrom().format(formatter);
+//            model.addAttribute("reservations", reservations);
+//        }
+        model.addAttribute("parkingAddresses", parkingService.allParkingPlaces());
         model.addAttribute("reservations", reservations);
 
-//        for(Reservation r : reservations){
-//            Long longDate = reservationService.datesBetweenReservationDays(r.getTimeFromDATE(), r.getTimeToDATE());
-//            Long longTime = reservationService.dateBetweenReservationHours(r.getTimeFromHOURS(), r.getTimeToHOURS());
-//            model.addAttribute("longDate", longDate);
-//            model.addAttribute("longTime", longTime);
-//
-//        }
         return "parking/parking_list";
     }
 

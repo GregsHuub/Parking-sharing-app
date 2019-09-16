@@ -27,6 +27,11 @@ public class Reservation {
     private LocalTime timeFromHOURS;
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeToHOURS;
+
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime dateFrom;
+
     private BigDecimal price;
     private BigDecimal serviceFee;
     private BigDecimal totalPrice;
@@ -94,6 +99,14 @@ public class Reservation {
 
     public void setTimeToHOURS(LocalTime timeToHOURS) {
         this.timeToHOURS = timeToHOURS;
+    }
+
+    public LocalDateTime getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(LocalDateTime dateFrom) {
+        this.dateFrom = dateFrom;
     }
 
     public BigDecimal getPrice() {

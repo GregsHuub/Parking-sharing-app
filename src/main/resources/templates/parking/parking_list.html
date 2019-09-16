@@ -102,8 +102,7 @@
                                             <span>Wynajęty od: </span><span class="rentFrom" th:text="${reservation.getTimeFromDATE() + ', ' + reservation.getTimeFromHOURS()}"></span>
                                             <br>
                                             <span>Wynajęty do: </span><span class="rentTo" th:text="${reservation.getTimeToDATE() + ', ' + reservation.getTimeToHOURS()}"></span>
-<!--                                                <span th:text="${reservation.timeFromHOURS.}"></span>-->
-<!--                                                todo <span th:text="${'Minuty z godzin' + longTime}"></span>-->
+                                            <span>Test daty i godizny łącznie: </span><span class="rentTo" th:text="${reservation.getDateFrom()}"></span>
                                         </div>
                                         </th:block>
 
