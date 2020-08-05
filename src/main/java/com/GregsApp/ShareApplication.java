@@ -40,8 +40,8 @@ public class ShareApplication {
     @Bean
     public ApiInfo apiInfo() {
         Contact contact = new Contact();
-        contact.setName("Grzegorz Ozimski");
-        contact.setEmail("grzegorzozimski@gmail.com");
+        contact.setName("Grzegorz xxxx");
+        contact.setEmail("xxxx");
         contact.setUrl("http://github.com/");
         return new ApiInfoBuilder()
                 .title("Parking-Sharing")
